@@ -21,12 +21,20 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome!"
+            android:text=" SUDOKU"
             android:id="@+id/welcome_message"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.19"
-            android:textAlignment="center"
-            android:textColor="#ff31ff2f" />
+            android:textAlignment="gravity"
+            android:textColor="#ff31ff2f"
+            android:textSize="80dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create an account"
+            android:onClick="registerButtonPress"
+            android:id="@+id/register_button"
+            android:layout_weight="0.19" />
 
         <Button
             android:layout_width="match_parent"
@@ -40,18 +48,27 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register"
-            android:onClick="registerButtonPress"
-            android:id="@+id/register_button"
-            android:layout_weight="0.22" />
+            android:text="Sign in with Facebook"
+            android:onClick="facebookButtonPress"
+            android:id="@+id/facebook_button"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.19" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Play as Guest"
+            android:text="Play as guest"
             android:onClick="guestButtonPress"
             android:id="@+id/guest_start_button"
             android:layout_weight="0.19" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Help"
+            android:id="@+id/help_button"
+            android:layout_gravity="right" />
 
     </LinearLayout>
 

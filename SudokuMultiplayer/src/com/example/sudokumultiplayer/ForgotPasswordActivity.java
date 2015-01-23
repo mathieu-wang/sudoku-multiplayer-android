@@ -8,22 +8,22 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class ForgotPasswordActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_forgot_password);
     }
 
 
-/*    @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login, menu);
+        getMenuInflater().inflate(R.menu.menu_forgot_password, menu);
         return true;
     }
-*/
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -39,13 +39,8 @@ public class LoginActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void loginButtonPress(View view) {
-        Intent guest_intent = new Intent(this, GuestMainActivity.class);
-        startActivity(guest_intent);
-    }
-
-    public void forgotButtonPress(View view) {
-        Intent forgot_intent = new Intent(this, ForgotPasswordActivity.class);
-        startActivity(forgot_intent);
+    public void resetButtonPress(View view) {
+        Intent login_intent = new Intent(this, LoginActivity.class);
+        startActivity(login_intent);
     }
 }

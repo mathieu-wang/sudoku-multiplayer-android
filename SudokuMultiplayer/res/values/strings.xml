@@ -7,5 +7,6 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_guest_main">GuestMainActivity</string>
+    <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
 
 </resources>

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.widget.Button;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -44,6 +45,12 @@ public class MainActivity extends ActionBarActivity {
     public void registerButtonPress(View view) {
         Intent register_intent = new Intent(this, RegisterActivity.class);
         startActivity(register_intent);
+    }
+
+    public void facebookButtonPress(View view) {
+        //do some fb integration
+        Intent guest_intent = new Intent(this, GuestMainActivity.class);
+        startActivity(guest_intent);
     }
 
     public void guestButtonPress(View view) {
