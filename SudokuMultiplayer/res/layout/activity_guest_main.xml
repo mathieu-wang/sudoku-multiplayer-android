@@ -27,7 +27,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Singeplayer"
+            android:text="Singleplayer"
+            android:onClick="singlePlayerButtonPress"
             android:id="@+id/single_player_button"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.09" />
@@ -36,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Multiplayer"
+            android:onClick="multiPlayerButtonPress"
             android:id="@+id/multi_player_button"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.09" />
@@ -44,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="View Stats"
+            android:onClick="viewStatsButtonPress"
             android:id="@+id/stats_button"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.09" />

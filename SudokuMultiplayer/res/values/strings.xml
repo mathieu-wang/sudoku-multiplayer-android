@@ -8,5 +8,8 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_guest_main">GuestMainActivity</string>
     <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
+    <string name="title_activity_single_player">SinglePlayer</string>
+    <string name="title_activity_multi_player">MultiPlayer</string>
+    <string name="title_activity_view_stats">View Stats</string>
 
 </resources>
