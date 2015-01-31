@@ -1,0 +1,89 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.sudokumultiplayer.LoginActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" SUDOKU"
+            android:id="@+id/welcome_message"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="gravity"
+            android:textColor="#ff31ff2f"
+            android:textSize="80dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="username: "
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="gravity"
+            android:layout_below="@+id/welcome_message"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/username_text"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="enter password:"
+            android:id="@+id/textView2"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="gravity"
+            android:layout_below="@+id/editText"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:id="@+id/password_text"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="196dp"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:onClick="loginButtonPress"
+            android:id="@+id/login_button"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="196dp"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:onClick="forgotButtonPress"
+            android:id="@+id/forgot_password_button"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Help"
+            android:id="@+id/help_button"
+            android:layout_gravity="right" />
+    </LinearLayout>
+
+</RelativeLayout>
