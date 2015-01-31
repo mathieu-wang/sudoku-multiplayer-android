@@ -6,14 +6,26 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 public class ForgotPasswordActivity extends ActionBarActivity {
+
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+    private Button resetPasswordButton;
+    private Button helpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+
+        usernameEditText = (EditText) findViewById(R.id.username_text);
+        passwordEditText = (EditText) findViewById(R.id.password_text);
+        resetPasswordButton = (Button) findViewById(R.id.reset_pass_button);
+        helpButton = (Button) findViewById(R.id.help_button);
     }
 
 
@@ -40,7 +52,16 @@ public class ForgotPasswordActivity extends ActionBarActivity {
     }
 
     public void resetButtonPress(View view) {
-        Intent login_intent = new Intent(this, LoginActivity.class);
-        startActivity(login_intent);
+        String username = usernameEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
+
+        RegisterActivity.UserAccount loginAccount = new RegisterActivity.UserAccount(username,password);
+
+        storeNewPassword(loginAccount);
+    }
+
+    public void storeNewPassword(RegisterActivity.UserAccount account){
+       // save new password
+
     }
 }

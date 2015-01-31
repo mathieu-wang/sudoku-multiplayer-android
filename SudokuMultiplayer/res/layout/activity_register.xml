@@ -40,7 +40,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="E-mail address::"
+            android:text="E-mail address:"
             android:id="@+id/user_email_text"
             android:layout_gravity="center_horizontal"
             android:textAlignment="gravity" />
