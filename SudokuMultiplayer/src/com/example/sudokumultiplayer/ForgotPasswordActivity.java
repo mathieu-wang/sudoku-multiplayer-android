@@ -1,21 +1,38 @@
 package com.example.sudokumultiplayer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ForgotPasswordActivity extends ActionBarActivity {
 
     private EditText usernameEditText;
     private EditText passwordEditText;
-    private Button resetPasswordButton;
-    private Button helpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +41,23 @@ public class ForgotPasswordActivity extends ActionBarActivity {
 
         usernameEditText = (EditText) findViewById(R.id.username_text);
         passwordEditText = (EditText) findViewById(R.id.password_text);
-        resetPasswordButton = (Button) findViewById(R.id.reset_pass_button);
-        helpButton = (Button) findViewById(R.id.help_button);
     }
 
+    /*
+    private class resetPassServerRequest extends AsyncTask<String, Integer, String> {
+        // save new password
+
+        String result = "";
+
+        protected String doInBackground(String... strings) {
+            return result;
+        }
+
+        protected void onPostExecute(String result) {
+            Log.v("HTTP RESPONSE: ", result);
+        }
+
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,14 +84,42 @@ public class ForgotPasswordActivity extends ActionBarActivity {
     public void resetButtonPress(View view) {
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
+        String msgContent = "";
 
-        RegisterActivity.UserAccount loginAccount = new RegisterActivity.UserAccount(username,password);
+        /*
+        Log.v("LOGGING", username);
+        Log.v("LOGGING", password);
 
-        storeNewPassword(loginAccount);
+        loginServerRequest response = new loginServerRequest();
+        response.execute(username,password);
+        msgContent = response.result;
+
+        if (reset successfully){
+
+            //go to login page
+            Intent login_intent = new Intent(this, LoginActivity.class);
+            startActivity(login_intent);
+
+        }else{
+
+            popUpMessage(msgContent);;
+            usernameEditText.setText("");
+            passwordEditText.setText("");
+        }*/
     }
 
-    public void storeNewPassword(RegisterActivity.UserAccount account){
-       // save new password
+    private void popUpMessage(String content) {
 
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        msg.setTitle("Error Message");
+        msg.setMessage(content);
+        msg.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // close the dialog
+            }
+        });
+        msg.setIcon(android.R.drawable.ic_dialog_alert);
+        msg.create().show();
     }
 }
