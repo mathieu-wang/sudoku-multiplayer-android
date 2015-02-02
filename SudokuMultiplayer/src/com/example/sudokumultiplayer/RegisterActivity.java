@@ -93,10 +93,6 @@ public class RegisterActivity extends ActionBarActivity {
         }
     }
 
-    public void dataRequest(){
-
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -120,6 +116,8 @@ public class RegisterActivity extends ActionBarActivity {
         String userPass2 = pass2EditText.getText().toString();
         String msgTitle = "Error Message";
         String msgContent = "";
+        String res = "";
+        int index;
 
         if(userPass1.equals(userPass2)){
 
@@ -128,26 +126,26 @@ public class RegisterActivity extends ActionBarActivity {
             Log.v("LOGGING", userPass1);
             Log.v("LOGGING", userPass2);          //send user information to the server
             //send user information to the server
-            registerServerRequest response = new registerServerRequest();
-            response.execute(userName,userPass1);
-            String res = "\"status\":\"Registration Successful\"";
 
-            /*
-            if (registration succeed){
-                //goes to log in screen
 
-                msgTitle = "Registration Successful !";
-                msgContent = "Thank you, you can now login and enjoy the game.";
-                popUpMessage(msgTitle,msgContent);
-                Intent login_intent = new Intent(this, LoginActivity.class);
-                startActivity(login_intent);
+            try{
 
-            }else{
-                //pop up some message
-                msgContent = "Account already exists."
-                popUpMessage(msgTitle,msgContent);
-            }
-             */
+                registerServerRequest response = new registerServerRequest();
+                res = response.execute(userName,userPass1).get().toString();
+
+                index = res.indexOf("Successful");
+                if (index > -1){
+                    //goes to log in screen
+                    Intent login_intent = new Intent(this, LoginActivity.class);
+                    startActivity(login_intent);
+
+                }else{
+                    //pop up some message
+                    msgContent = "Account already exists.";
+                    popUpMessage(msgContent);
+                }
+
+            }catch(Exception e){}
 
         }
         else {
@@ -158,15 +156,14 @@ public class RegisterActivity extends ActionBarActivity {
             pass1EditText.setText("");
             pass2EditText.setText("");
 
+            popUpMessage(msgContent);
         }
-
-        popUpMessage(msgTitle,msgContent);
     }
 
-    private void popUpMessage(String title, String content) {
+    private void popUpMessage(String content) {
 
         AlertDialog.Builder msg = new AlertDialog.Builder(this);
-        msg.setTitle(title);
+        msg.setTitle("Error Message");
         msg.setMessage(content);
         msg.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 

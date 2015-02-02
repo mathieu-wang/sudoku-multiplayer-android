@@ -109,31 +109,31 @@ public class LoginActivity extends ActionBarActivity {
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         String msgContent = "";
+        String res = "";
+        int index;
 
         Log.v("LOGGING", username);
         Log.v("LOGGING", password);
 
-        loginServerRequest response = new loginServerRequest();
-        response.execute(username,password);
-        msgContent = response.result;
+        try{
 
-        /*
-        if (login successfully){
+            loginServerRequest response = new loginServerRequest();
+            res = response.execute(username,password).get().toString();
+            index = res.indexOf("access_token");
 
-        Intent play_intent = new Intent(this, GuestMainActivity.class);
-        startActivity(play_intent);
+            if (index > -1){
 
-        }else{
+                Intent play_intent = new Intent(this, GuestMainActivity.class);
+                startActivity(play_intent);
 
-            popUpMessage(msgContent);
-            usernameEditText.setText("");
-            passwordEditText.setText("");
-        }
-         */
+            }else{
 
-        Intent play_intent = new Intent(this, GuestMainActivity.class);
-        startActivity(play_intent);
+                popUpMessage(msgContent);
+                usernameEditText.setText("");
+                passwordEditText.setText("");
+            }
 
+        }catch(Exception e){}
     }
 
     public void forgotButtonPress(View view) {
@@ -145,7 +145,7 @@ public class LoginActivity extends ActionBarActivity {
 
         AlertDialog.Builder msg = new AlertDialog.Builder(this);
         msg.setTitle("Error Message");
-        msg.setMessage(content);
+        msg.setMessage("Incorrect username or password.");
         msg.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
