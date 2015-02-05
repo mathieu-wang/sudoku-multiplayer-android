@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.Character;
 
 public class RegisterActivity extends ActionBarActivity {
 
@@ -93,6 +94,10 @@ public class RegisterActivity extends ActionBarActivity {
         }
     }
 
+    public void dataRequest(){
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -114,17 +119,66 @@ public class RegisterActivity extends ActionBarActivity {
         String userEmail = emailEditText.getText().toString();
         String userPass1 = pass1EditText.getText().toString();
         String userPass2 = pass2EditText.getText().toString();
-        String msgTitle = "Error Message";
         String msgContent = "";
         String res = "";
-        int index;
 
-        if(userPass1.equals(userPass2)){
+        Boolean validUsername = (userName.length() <= 60) && (userName.length()>= 2);
+
+        if (validUsername) {
+            for (int i = 0; i < userName.length(); i++) {
+                if (!Character.isLetterOrDigit(userName.charAt(i))) {
+                    validUsername = false;
+                    break;
+                }
+            }
+        }
+
+        if (!validUsername){
+
+            msgContent = "Your username should only contains letters or digits, with a minimum of 2 and maximum of 60 characters.";
+            nameEditText.setText("");
+            emailEditText.setText("");
+            pass1EditText.setText("");
+            pass2EditText.setText("");
+
+            popUpMessage(msgContent);
+
+        }else if (userEmail.indexOf("@") <= -1){
+
+            msgContent = "The email address you've entered is invalid.";
+            nameEditText.setText("");
+            emailEditText.setText("");
+            pass1EditText.setText("");
+            pass2EditText.setText("");
+
+            popUpMessage(msgContent);
+
+        }else if(!userPass1.equals(userPass2)){
+
+            msgContent = "The first password does not match with the second one";
+            nameEditText.setText("");
+            emailEditText.setText("");
+            pass1EditText.setText("");
+            pass2EditText.setText("");
+
+            popUpMessage(msgContent);
+
+        }else if (userPass1.length() < 6) {
+
+            msgContent = "The length of your password should be longer than or equal to 6.";
+            nameEditText.setText("");
+            emailEditText.setText("");
+            pass1EditText.setText("");
+            pass2EditText.setText("");
+
+            popUpMessage(msgContent);
+
+        }else{
 
             Log.v("LOGGING", userName);
             Log.v("LOGGING", userEmail);
             Log.v("LOGGING", userPass1);
-            Log.v("LOGGING", userPass2);          //send user information to the server
+            Log.v("LOGGING", userPass2);
             //send user information to the server
 
 
@@ -133,30 +187,34 @@ public class RegisterActivity extends ActionBarActivity {
                 registerServerRequest response = new registerServerRequest();
                 res = response.execute(userName,userPass1).get().toString();
 
-                index = res.indexOf("Successful");
-                if (index > -1){
+                if (res.indexOf("Successful") > -1){
                     //goes to log in screen
                     Intent login_intent = new Intent(this, LoginActivity.class);
                     startActivity(login_intent);
 
-                }else{
+                }else if (res.indexOf("exists") > -1){
                     //pop up some message
                     msgContent = "Account already exists.";
+                    nameEditText.setText("");
+                    emailEditText.setText("");
+                    pass1EditText.setText("");
+                    pass2EditText.setText("");
+
+                    popUpMessage(msgContent);
+
+                }else{
+
+                    msgContent = "An unknown error has occurred. Please try again.";
+                    nameEditText.setText("");
+                    emailEditText.setText("");
+                    pass1EditText.setText("");
+                    pass2EditText.setText("");
+
                     popUpMessage(msgContent);
                 }
 
             }catch(Exception e){}
 
-        }
-        else {
-            //have some error popup happen
-            msgContent = "The first password does not match with the second one";
-            nameEditText.setText("");
-            emailEditText.setText("");
-            pass1EditText.setText("");
-            pass2EditText.setText("");
-
-            popUpMessage(msgContent);
         }
     }
 
