@@ -34,6 +34,10 @@ public class LoginActivity extends ActionBarActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
 
+    public String accessToken = "";
+    public String refreshToken = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,9 +122,19 @@ public class LoginActivity extends ActionBarActivity {
         try{
 
             loginServerRequest response = new loginServerRequest();
-            res = response.execute(username,password).get().toString();
+            res = response.execute(username,password).get();
             index = res.indexOf("access_token");
-
+            String[] tokens = res.split("\"");
+            for (int i = 0; i < tokens.length; i++) {
+                if (tokens[i].equals("access_token")) {
+                    accessToken = tokens[i+2];
+                    Log.v("ACCESS_TOKEN : ", accessToken);
+                }
+                if (tokens[i].equals("refresh_token")) {
+                    refreshToken = tokens[i+2];
+                    Log.v("REFRESH_TOKEN : ", refreshToken);
+                }
+            }
             if (index > -1){
 
                 Intent play_intent = new Intent(this, GuestMainActivity.class);
@@ -133,7 +147,7 @@ public class LoginActivity extends ActionBarActivity {
                 passwordEditText.setText("");
             }
 
-        }catch(Exception e){}
+        } catch(Exception e){}
     }
 
     public void forgotButtonPress(View view) {

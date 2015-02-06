@@ -185,7 +185,7 @@ public class RegisterActivity extends ActionBarActivity {
             try{
 
                 registerServerRequest response = new registerServerRequest();
-                res = response.execute(userName,userPass1).get().toString();
+                res = response.execute(userName,userPass1).get();
 
                 if (res.indexOf("Successful") > -1){
                     //goes to log in screen
