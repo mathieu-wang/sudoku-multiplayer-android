@@ -123,7 +123,6 @@ public class LoginActivity extends ActionBarActivity {
 
             loginServerRequest response = new loginServerRequest();
             res = response.execute(username,password).get();
-            index = res.indexOf("access_token");
             String[] tokens = res.split("\"");
             for (int i = 0; i < tokens.length; i++) {
                 if (tokens[i].equals("access_token")) {
@@ -135,16 +134,24 @@ public class LoginActivity extends ActionBarActivity {
                     Log.v("REFRESH_TOKEN : ", refreshToken);
                 }
             }
-            if (index > -1){
+            if (res.indexOf("access_token") > -1){
 
                 Intent play_intent = new Intent(this, GuestMainActivity.class);
                 startActivity(play_intent);
 
-            }else{
+            }else if (res.indexOf("invalid") > -1){
 
-                popUpMessage(msgContent);
+                popUpMessage("Your username or password is invalid");
                 usernameEditText.setText("");
                 passwordEditText.setText("");
+
+            }else{
+
+                msgContent = "An unknown error has occurred. Please check your network connection.";
+                usernameEditText.setText("");
+                passwordEditText.setText("");
+
+                popUpMessage(msgContent);
             }
 
         } catch(Exception e){}
@@ -159,7 +166,7 @@ public class LoginActivity extends ActionBarActivity {
 
         AlertDialog.Builder msg = new AlertDialog.Builder(this);
         msg.setTitle("Error Message");
-        msg.setMessage("Incorrect username or password.");
+        msg.setMessage(content);
         msg.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
