@@ -43,8 +43,8 @@ public class MultiPlayerGame extends ActionBarActivity {
     public void leaveGameButtonPress(View view) {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Closing Activity")
-                .setMessage("Are you sure you want to close this activity?")
+                .setTitle("Leave Game")
+                .setMessage("Are you sure you want to leave the current game?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     @Override

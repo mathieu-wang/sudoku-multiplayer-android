@@ -11,7 +11,7 @@ public class ViewStatsActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_stats);
+        setContentView(R.layout.activity_view_stats2);
     }
 
 

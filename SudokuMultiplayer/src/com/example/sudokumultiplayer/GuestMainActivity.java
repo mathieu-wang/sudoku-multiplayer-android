@@ -57,15 +57,17 @@ public class GuestMainActivity extends ActionBarActivity {
     }
 
     public void signOutButtonPress(View view) {
+        final Intent main_page_intent = new Intent(this, MainActivity.class);
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Closing Activity")
-                .setMessage("Are you sure you want to close this activity?")
+                .setTitle("Log Out")
+                .setMessage("Are you sure you want to log out?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        //logout logic should go here
+                        startActivity(main_page_intent);
                     }
                 })
                 .setNegativeButton("No", null)
