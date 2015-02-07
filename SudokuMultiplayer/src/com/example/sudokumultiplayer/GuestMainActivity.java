@@ -1,5 +1,7 @@
 package com.example.sudokumultiplayer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -40,17 +42,33 @@ public class GuestMainActivity extends ActionBarActivity {
     }
 
     public void singlePlayerButtonPress(View view) {
-        Intent single_player_intent = new Intent(this, SinglePlayer.class);
+        Intent single_player_intent = new Intent(this, SinglePlayerGame.class);
         startActivity(single_player_intent);
     }
 
     public void multiPlayerButtonPress(View view) {
-        Intent multiplayer_intent = new Intent(this, MultiPlayer.class);
+        Intent multiplayer_intent = new Intent(this, MultiPlayerGame.class);
         startActivity(multiplayer_intent);
     }
 
     public void viewStatsButtonPress(View view) {
         Intent view_stats_intent = new Intent(this, ViewStatsActivity.class);
         startActivity(view_stats_intent);
+    }
+
+    public void signOutButtonPress(View view) {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Closing Activity")
+                .setMessage("Are you sure you want to close this activity?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }
