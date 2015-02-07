@@ -187,6 +187,7 @@ public class RegisterActivity extends ActionBarActivity {
                 registerServerRequest response = new registerServerRequest();
                 res = response.execute(userName,userPass1).get();
 
+
                 if (res.indexOf("Successful") > -1){
                     //goes to log in screen
                     Intent login_intent = new Intent(this, LoginActivity.class);
@@ -204,7 +205,7 @@ public class RegisterActivity extends ActionBarActivity {
 
                 }else{
 
-                    msgContent = "An unknown error has occurred. Please try again.";
+                    msgContent = "An unknown error has occurred. Please check your network connection.";
                     nameEditText.setText("");
                     emailEditText.setText("");
                     pass1EditText.setText("");
