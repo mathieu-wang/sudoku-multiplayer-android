@@ -6,96 +6,102 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.sudokumultiplayer.RegisterActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" SUDOKU"
-            android:id="@+id/welcome_message"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="gravity"
-            android:textColor="#ff31ff2f"
-            android:textSize="80dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="username: "
-            android:id="@+id/user_name_text"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="gravity" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" SUDOKU"
+                android:id="@+id/welcome_message"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="gravity"
+                android:textColor="#ff31ff2f"
+                android:textSize="80dp" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/userName"
-            android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="username: "
+                android:id="@+id/user_name_text"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="gravity" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="E-mail address:"
-            android:id="@+id/user_email_text"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="gravity" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/userName"
+                android:layout_gravity="center_horizontal" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:id="@+id/userEmail"
-            android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="E-mail address:"
+                android:id="@+id/user_email_text"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="gravity" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="enter password:"
-            android:id="@+id/user_pass1_text"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="gravity" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:id="@+id/userEmail"
+                android:layout_gravity="center_horizontal" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:id="@+id/userPass1"
-            android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="enter password:"
+                android:id="@+id/user_pass1_text"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="gravity" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="enter password again:"
-            android:id="@+id/user_pass2_text"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="gravity" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:id="@+id/userPass1"
+                android:layout_gravity="center_horizontal" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:id="@+id/userPass2"
-            android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="enter password again:"
+                android:id="@+id/user_pass2_text"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="gravity" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Register"
-            android:id="@+id/registerButton"
-            android:onClick="registerButtonPress"
-            android:layout_gravity="center_horizontal" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:id="@+id/userPass2"
+                android:layout_gravity="center_horizontal" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Help"
-            android:id="@+id/help_button"
-            android:layout_gravity="right" />
-    </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:id="@+id/registerButton"
+                android:onClick="registerButtonPress"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Help"
+                android:id="@+id/help_button"
+                android:layout_gravity="right" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
