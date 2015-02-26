@@ -108,7 +108,7 @@
                         android:layout_height="30dp"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/Entry00"
+                        android:id="@+id/entry00"
                         android:maxLength="1"
                         android:layout_column="0" />
 
@@ -189,7 +189,7 @@
                         android:layout_height="30dp"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/Entry10"
+                        android:id="@+id/entry10"
                         android:maxLength="1"
                         android:layout_column="0" />
 
@@ -270,7 +270,7 @@
                         android:layout_height="30dp"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/Entry20"
+                        android:id="@+id/entry20"
                         android:maxLength="1"
                         android:layout_column="0" />
 
@@ -351,7 +351,7 @@
                         android:layout_height="30dp"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/Entry30"
+                        android:id="@+id/entry30"
                         android:maxLength="1"
                         android:layout_column="0" />
 
@@ -432,7 +432,7 @@
                         android:layout_height="30dp"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/Entry40"
+                        android:id="@+id/entry40"
                         android:maxLength="1"
                         android:layout_column="0" />
 
@@ -513,7 +513,7 @@
                         android:layout_height="30dp"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/Entry50"
+                        android:id="@+id/entry50"
                         android:maxLength="1"
                         android:layout_column="0" />
 
@@ -594,7 +594,7 @@
                         android:layout_height="30dp"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/Entry60"
+                        android:id="@+id/entry60"
                         android:maxLength="1"
                         android:layout_column="0" />
 
@@ -675,7 +675,7 @@
                         android:layout_height="30dp"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/Entry70"
+                        android:id="@+id/entry70"
                         android:maxLength="1"
                         android:layout_column="0" />
 
@@ -756,7 +756,7 @@
                         android:layout_height="30dp"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/Entry80"
+                        android:id="@+id/entry80"
                         android:maxLength="1"
                         android:layout_column="0" />
 
