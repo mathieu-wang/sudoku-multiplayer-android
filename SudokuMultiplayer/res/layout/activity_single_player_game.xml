@@ -41,7 +41,7 @@
                 android:id="@+id/progressBar"
                 android:layout_gravity="center_horizontal" />
 
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            <RadioGroup
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -95,6 +95,7 @@
                 android:layout_gravity="center_horizontal" />
 
             <TableLayout
+                android:id="@+id/myTableLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal">
