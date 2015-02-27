@@ -1,15 +1,18 @@
 package com.example.sudokumultiplayer;
 
+import java.util.ArrayList;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
 
 public class SinglePlayerGame extends ActionBarActivity {
@@ -68,7 +71,31 @@ public class SinglePlayerGame extends ActionBarActivity {
         System.out.println("Starting game with difficulty: " + difficulty.name());
         String sudokuString = generateSudokuString();
         String[] numbers = sudokuString.split(",");
-        
+        TableLayout myTableLayout = (TableLayout) findViewById( R.id.myTableLayout);
+        ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
+        ArrayList<TableRow> sodokuNumberRows = new ArrayList<TableRow>();
+        for(int i = 0; i < myTableLayout.getChildCount(); i++){
+          if(myTableLayout.getChildAt( i ) instanceof TableRow )
+              sodokuNumberRows.add((TableRow) myTableLayout.getChildAt(i));
+        }
+        //System.out.println("Table Rows = " + sodokuNumberRows.size());
+
+        for (int i = 0; i < sodokuNumberRows.size(); i++) {
+            for (int j = 0; j < sodokuNumberRows.get(i).getChildCount(); j++) {
+                if(sodokuNumberRows.get(i).getChildAt(j) instanceof EditText )
+                    sodokuNumberSlots.add((EditText) sodokuNumberRows.get(i).getChildAt(j));
+            }
+        }
+
+        //System.out.println("Slot amount = " + sodokuNumberSlots.size());
+
+        if(numbers.length == sodokuNumberSlots.size()){
+            for (int i = 0; i < numbers.length; i++) {
+                //skip 0, left empty
+                if (!numbers[i].equals("0"))
+                    sodokuNumberSlots.get(i).setText(numbers[i]);
+            }
+        }
     }
 
     private String generateSudokuString() {
