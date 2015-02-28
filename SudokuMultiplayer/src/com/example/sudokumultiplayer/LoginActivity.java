@@ -176,4 +176,12 @@ public class LoginActivity extends ActionBarActivity {
         msg.setIcon(android.R.drawable.ic_dialog_alert);
         msg.create().show();
     }
+    public void helpButtonPress(View view) {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_menu_help)
+                .setTitle("Help")
+                .setMessage("If you do not have an account, you can go back to the main menu and click on Create Account, or Play as Guest.\n If you forgot your password, you can get a new one by pressing on Forgot Password")
+                .setNegativeButton("Close", null)
+                .show();
+    }
 }
