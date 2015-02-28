@@ -57,4 +57,13 @@ public class MainActivity extends ActionBarActivity {
         Intent guest_intent = new Intent(this, GuestMainActivity.class);
         startActivity(guest_intent);
     }
+    
+    public void helpButtonPress(View view) {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_menu_help)
+                .setTitle("Help")
+                .setMessage("If you do not have an account, create a new account or press the play as a guest button to play without an account")
+                .setNegativeButton("Close", null)
+                .show();
+    }
 }
