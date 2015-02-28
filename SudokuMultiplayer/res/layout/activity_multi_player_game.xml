@@ -885,4 +885,14 @@
             android:layout_weight="0.17" />
     </LinearLayout>
     </ScrollView>
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Help"
+        android:id="@+id/help_button"
+        android:layout_gravity="right"
+        android:layout_alignBottom="@+id/scroll"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
