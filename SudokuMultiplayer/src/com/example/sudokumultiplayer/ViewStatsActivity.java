@@ -1,10 +1,11 @@
 package com.example.sudokumultiplayer;
 
+import android.app.AlertDialog;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.view.View;
 
 public class ViewStatsActivity extends ActionBarActivity {
 
@@ -35,5 +36,14 @@ public class ViewStatsActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    
+    public void helpButtonPress(View view) {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_menu_help)
+                .setTitle("Help")
+                .setMessage("Check your lifetime stats and the global leaderboards.")
+                .setNegativeButton("Close", null)
+                .show();
     }
 }
