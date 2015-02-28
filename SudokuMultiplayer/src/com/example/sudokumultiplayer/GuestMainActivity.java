@@ -73,4 +73,12 @@ public class GuestMainActivity extends ActionBarActivity {
                 .setNegativeButton("No", null)
                 .show();
     }
+    public void helpButtonPress(View view) {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_menu_help)
+                .setTitle("Help")
+                .setMessage("Play against the computer or against other players.\n Stats won't be recorded in Guest Mode.\n")
+                .setNegativeButton("Close", null)
+                .show();
+    }
 }
