@@ -234,4 +234,12 @@ public class RegisterActivity extends ActionBarActivity {
         msg.create().show();
     }
 
+    public void helpButtonPress(View view) {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_menu_help)
+                .setTitle("Help")
+                .setMessage("By creating an account, you can save your stats and compare them to other players.\n If you forget your password, it can be reset in the login screen.")
+                .setNegativeButton("Close", null)
+                .show();
+    }
 }
