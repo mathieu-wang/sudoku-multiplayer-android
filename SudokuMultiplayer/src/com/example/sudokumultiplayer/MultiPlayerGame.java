@@ -55,4 +55,13 @@ public class MultiPlayerGame extends ActionBarActivity {
                 .setNegativeButton("No", null)
                 .show();
     }
+    public void helpButtonPress(View view) {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_menu_help)
+                .setTitle("Help")
+                //TODO: add a custom layout showing the rules of sudoku
+                .setMessage("Click on hint to automatically fill in one of the squares, be careful since hints are limited.")
+                .setNegativeButton("Close", null)
+                .show();
+    }
 }
