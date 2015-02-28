@@ -1,5 +1,7 @@
 package com.example.sudokumultiplayer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
