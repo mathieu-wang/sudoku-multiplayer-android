@@ -122,4 +122,13 @@ public class ForgotPasswordActivity extends ActionBarActivity {
         msg.setIcon(android.R.drawable.ic_dialog_alert);
         msg.create().show();
     }
+    
+    public void helpButtonPress(View view) {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_menu_help)
+                .setTitle("Help")
+                .setMessage("An email will be sent to your email account with a new password.")
+                .setNegativeButton("Close", null)
+                .show();
+    }
 }
