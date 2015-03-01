@@ -861,6 +861,13 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/checkError"
+                android:onClick="checkErrorButtonPress"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:text="Check Error" />
+
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Leave Game"
