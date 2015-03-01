@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -117,9 +118,11 @@ public class SinglePlayerGame extends ActionBarActivity {
     }
     
     public void checkErrorButtonPress(View view){
-        ArrayList<EditText> sodokuNumberSlots = getAllSudokuNumberSlots();
+        final ArrayList<EditText> sodokuNumberSlots = getAllSudokuNumberSlots();
         //TODO web request for solution
-        String[] solutions = new String[81];
+        //String[] solutions = new String[81];
+        String sudokuString = generateSudokuString(difficulty.name());
+        String[] solutions = sudokuString.split(",");
 
         if(solutions.length == sodokuNumberSlots.size()){
             for (int i = 0; i < solutions.length; i++) {
@@ -127,14 +130,22 @@ public class SinglePlayerGame extends ActionBarActivity {
             	String userInputNumber = sodokuNumberSlots.get(i).getText().toString();
                 if (!userInputNumber.isEmpty()){
                 	if(!userInputNumber.equals(solutions[i])){
-                		sodokuNumberSlots.get(i).setBackgroundColor(Color.RED);
+                		sodokuNumberSlots.get(i).setTextColor(Color.RED);
                 	}
                 }
             }
         }
         
-        //TODO reset background to white
-    	
+        //After 3 seconds, reset background
+        new CountDownTimer(3000, 1000){
+        	public void onTick(long millisUntilFinished) {}
+        	public void onFinish() {
+        		//reset background
+        		for (int i = 0; i < sodokuNumberSlots.size(); i++) {
+        			sodokuNumberSlots.get(i).setTextColor(Color.BLACK);
+        		}
+        	}
+        }.start();
     }
     
     public void helpButtonPress(View view) {
