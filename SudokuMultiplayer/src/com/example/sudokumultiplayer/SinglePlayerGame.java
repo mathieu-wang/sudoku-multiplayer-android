@@ -172,6 +172,8 @@ public class SinglePlayerGame extends ActionBarActivity {
                 //skip 0, left empty
                 if (!numbers[i].equals("0"))
                     sodokuNumberSlots.get(i).setText(numbers[i]);
+                else
+                	sodokuNumberSlots.get(i).setText("");
             }
         }
         //get solution
@@ -198,6 +200,8 @@ public class SinglePlayerGame extends ActionBarActivity {
             e.printStackTrace();
         }
         solution = sol.split(",");
+        if(solution[0].startsWith("{\"sudoku\":["))
+        	solution[0] = solution[0].replace("{\"sudoku\":[", "");
 
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
         mProgress.setMax(81);
@@ -243,20 +247,52 @@ public class SinglePlayerGame extends ActionBarActivity {
                 .setNegativeButton("No", null)
                 .show();
     }
+    
+    public void submitButtonPress(View view) {
+    	boolean isCorrect = false;
+    	String userResults = new String("");
+    	String solutionString = new String("");
+    	for(int i=0; i<sodokuNumberSlots.size(); i++){
+    		userResults+=sodokuNumberSlots.get(i).getText().toString();
+    	}
+    	
+    	for (int i = 0; i < solution.length; i++) {
+    		solutionString+=solution[i];
+		}
+    	
+    	System.out.println(userResults);
+    	System.out.println(solutionString);
+    	
+    	if(userResults.equals(solutionString))
+    		isCorrect = true;
+    	
+
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        msg.setTitle("Error Message");
+        if(isCorrect)
+        	msg.setMessage("You win!");
+        else
+        	msg.setMessage("You lose!");
+        msg.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // close the dialog
+            }
+        });
+        msg.setIcon(android.R.drawable.ic_dialog_alert);
+        msg.create().show();
+    	
+    }
 
     public void checkErrorButtonPress(View view){
         final ArrayList<EditText> sodokuNumberSlots = getAllSudokuNumberSlots();
-        //TODO web request for solution
-        //String[] solutions = new String[81];
-        String sudokuString = generateSudokuString();
-        String[] solutions = sudokuString.split(",");
 
-        if(solutions.length == sodokuNumberSlots.size()){
-            for (int i = 0; i < solutions.length; i++) {
+        if(solution.length == sodokuNumberSlots.size()){
+            for (int i = 0; i < solution.length; i++) {
                 //when not empty, compare with solution
                 String userInputNumber = sodokuNumberSlots.get(i).getText().toString();
                 if (!userInputNumber.isEmpty()){
-                    if(!userInputNumber.equals(solutions[i])){
+                    if(!userInputNumber.equals(solution[i])){
                         sodokuNumberSlots.get(i).setTextColor(Color.RED);
                     }
                 }
