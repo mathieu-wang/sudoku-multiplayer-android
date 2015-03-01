@@ -29,6 +29,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -71,6 +72,36 @@ public class SinglePlayerGame extends ActionBarActivity {
 
             try {
                 HttpResponse response = httpClient.execute(httpPost);
+                result = EntityUtils.toString(response.getEntity());
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        protected void onPostExecute(String result) {
+            Log.v("HTTP RESPONSE: ", result);
+        }
+    }
+
+    public class sudokuStringRequest extends AsyncTask<String, Integer, String> {
+        String result = "";
+
+        public String doInBackground(String... strings) {
+            HttpClient httpClient = new DefaultHttpClient();
+            String url = "http://104.131.185.217:3000/sudoku/generate-string/25";
+            if (difficulty == Difficulty.MEDIUM) {
+                url = "http://104.131.185.217:3000/sudoku/generate-string/40";
+            } else if (difficulty == Difficulty.HARD) {
+                url = "http://104.131.185.217:3000/sudoku/generate-string";
+            }
+
+            HttpGet httpGet = new HttpGet(url);
+
+            try {
+                HttpResponse response = httpClient.execute(httpGet);
                 result = EntityUtils.toString(response.getEntity());
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
@@ -128,11 +159,14 @@ public class SinglePlayerGame extends ActionBarActivity {
     }
 
     public void startGame (View view) {
+
         System.out.println("Starting game with difficulty: " + difficulty.name());
-        String sudokuString = generateSudokuString(difficulty.name());
+        String sudokuString = generateSudokuString();
+        Log.v("sudoku: ", sudokuString);
         String[] numbers = sudokuString.split(",");
         sodokuNumberSlots = getAllSudokuNumberSlots();
         //Write numbers into grid
+        resetAllSudokuNumberSlots();
         if(numbers.length == sodokuNumberSlots.size()){
             for (int i = 0; i < numbers.length; i++) {
                 //skip 0, left empty
@@ -164,29 +198,32 @@ public class SinglePlayerGame extends ActionBarActivity {
             e.printStackTrace();
         }
         solution = sol.split(",");
-        if(solution[0].startsWith("{\"sudoku\":["))
-        	solution[0] = solution[0].replace("{\"sudoku\":[", "");
 
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
         mProgress.setMax(81);
 
         counterThread = new Thread(new CounterLoop());
         counterThread.start();
+
     }
 
-    private String generateSudokuString(String difficultly) {
-        //TODO web request, generate Sudoku string based on different difficultly
-        String sudokuJsonString =  "{\n" +
-                "    \"sudoku\": \"8,6,0,9,0,0,0,4,3,9,0,0,2,0,3,8,6,1,0,4,3,0,6,1,9,7,0,0,0,9,1,5,0,4,3,0,0,0,7,4,3,0,0,8,0,4,3,2,6,8,9,1,0,7,0,1,0,0,9,6,3,0,4,0,9,6,0,0,4,7,1,8,0,0,0,7,1,8,5,0,0\"\n" +
-                "}\n";
-
+    private String generateSudokuString() {
+        String sudokuJsonString = "";
         String sudokuString = "";
-        String[] tokens = sudokuJsonString.split("\"");
-        for (int i = 0; i < tokens.length; i++) {
-            if (tokens[i].equals("sudoku")) {
-                sudokuString = tokens[i + 2];
+        try{
+            sudokuStringRequest response = new sudokuStringRequest();
+            sudokuJsonString =  response.execute().get();
+
+            String[] tokens = sudokuJsonString.split("\"");
+            for (int i = 0; i < tokens.length; i++) {
+                if (tokens[i].equals("sudoku")) {
+                    sudokuString = tokens[i + 2];
+                }
             }
-        }
+
+        }catch(Exception e){}
+
+        Log.v("sudoku: ", sudokuString);
         return sudokuString;
     }
 
@@ -209,13 +246,17 @@ public class SinglePlayerGame extends ActionBarActivity {
 
     public void checkErrorButtonPress(View view){
         final ArrayList<EditText> sodokuNumberSlots = getAllSudokuNumberSlots();
+        //TODO web request for solution
+        //String[] solutions = new String[81];
+        String sudokuString = generateSudokuString();
+        String[] solutions = sudokuString.split(",");
 
-        if(solution.length == sodokuNumberSlots.size()){
-            for (int i = 0; i < solution.length; i++) {
+        if(solutions.length == sodokuNumberSlots.size()){
+            for (int i = 0; i < solutions.length; i++) {
                 //when not empty, compare with solution
                 String userInputNumber = sodokuNumberSlots.get(i).getText().toString();
                 if (!userInputNumber.isEmpty()){
-                    if(!userInputNumber.equals(solution[i])){
+                    if(!userInputNumber.equals(solutions[i])){
                         sodokuNumberSlots.get(i).setTextColor(Color.RED);
                     }
                 }
@@ -263,6 +304,13 @@ public class SinglePlayerGame extends ActionBarActivity {
         }
         //System.out.println("Slot amount = " + sodokuNumberSlots.size());
         return sodokuNumberSlots;
+    }
+
+    //reset all EditText elements to empty
+    private void resetAllSudokuNumberSlots(){
+        for (int i = 0; i < sodokuNumberSlots.size(); i++){
+            sodokuNumberSlots.get(i).setText("");
+        }
     }
 
     public void hintButtonPress(View view) throws ExecutionException, InterruptedException {
