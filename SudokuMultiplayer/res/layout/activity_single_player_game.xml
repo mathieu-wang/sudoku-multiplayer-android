@@ -111,7 +111,8 @@
                         android:ems="10"
                         android:id="@+id/entry00"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -120,7 +121,8 @@
                         android:ems="10"
                         android:id="@+id/entry01"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -128,7 +130,8 @@
                         android:ems="10"
                         android:id="@+id/entry02"
                         android:maxLength="1"
-                        android:layout_column="2" />
+                        android:layout_column="2"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -137,7 +140,8 @@
                         android:ems="10"
                         android:id="@+id/entry03"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -145,7 +149,8 @@
                         android:ems="10"
                         android:id="@+id/entry04"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -154,7 +159,8 @@
                         android:ems="10"
                         android:id="@+id/entry05"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -162,7 +168,8 @@
                         android:ems="10"
                         android:id="@+id/entry06"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -171,7 +178,8 @@
                         android:ems="10"
                         android:id="@+id/entry07"
                         android:maxLength="1"
-                        android:layout_column="7" />
+                        android:layout_column="7"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -179,7 +187,8 @@
                         android:ems="10"
                         android:id="@+id/entry08"
                         android:maxLength="1"
-                        android:layout_column="8" />
+                        android:layout_column="8"
+                        android:textSize="13dp" />
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
@@ -192,7 +201,8 @@
                         android:ems="10"
                         android:id="@+id/entry10"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -201,7 +211,8 @@
                         android:ems="10"
                         android:id="@+id/entry11"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -209,7 +220,8 @@
                         android:ems="10"
                         android:id="@+id/entry12"
                         android:maxLength="1"
-                        android:layout_column="2" />
+                        android:layout_column="2"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -218,7 +230,8 @@
                         android:ems="10"
                         android:id="@+id/entry13"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -226,7 +239,8 @@
                         android:ems="10"
                         android:id="@+id/entry14"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -235,7 +249,8 @@
                         android:ems="10"
                         android:id="@+id/entry15"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -243,7 +258,8 @@
                         android:ems="10"
                         android:id="@+id/entry16"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -252,7 +268,8 @@
                         android:ems="10"
                         android:id="@+id/entry17"
                         android:maxLength="1"
-                        android:layout_column="7" />
+                        android:layout_column="7"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -260,7 +277,8 @@
                         android:ems="10"
                         android:id="@+id/entry18"
                         android:maxLength="1"
-                        android:layout_column="8" />
+                        android:layout_column="8"
+                        android:textSize="13dp" />
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
@@ -273,7 +291,8 @@
                         android:ems="10"
                         android:id="@+id/entry20"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -282,7 +301,8 @@
                         android:ems="10"
                         android:id="@+id/entry21"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -290,7 +310,8 @@
                         android:ems="10"
                         android:id="@+id/entry22"
                         android:maxLength="1"
-                        android:layout_column="2" />
+                        android:layout_column="2"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -299,7 +320,8 @@
                         android:ems="10"
                         android:id="@+id/entry23"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -307,7 +329,8 @@
                         android:ems="10"
                         android:id="@+id/entry24"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -316,7 +339,8 @@
                         android:ems="10"
                         android:id="@+id/entry25"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -324,7 +348,8 @@
                         android:ems="10"
                         android:id="@+id/entry26"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -333,7 +358,8 @@
                         android:ems="10"
                         android:id="@+id/entry27"
                         android:maxLength="1"
-                        android:layout_column="7" />
+                        android:layout_column="7"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -341,7 +367,8 @@
                         android:ems="10"
                         android:id="@+id/entry28"
                         android:maxLength="1"
-                        android:layout_column="8" />
+                        android:layout_column="8"
+                        android:textSize="13dp" />
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
@@ -354,7 +381,8 @@
                         android:ems="10"
                         android:id="@+id/entry30"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -363,7 +391,8 @@
                         android:ems="10"
                         android:id="@+id/entry31"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -371,7 +400,8 @@
                         android:ems="10"
                         android:id="@+id/entry32"
                         android:maxLength="1"
-                        android:layout_column="2" />
+                        android:layout_column="2"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -380,7 +410,8 @@
                         android:ems="10"
                         android:id="@+id/entry33"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -388,7 +419,8 @@
                         android:ems="10"
                         android:id="@+id/entry34"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -397,7 +429,8 @@
                         android:ems="10"
                         android:id="@+id/entry35"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -405,7 +438,8 @@
                         android:ems="10"
                         android:id="@+id/entry36"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -414,7 +448,8 @@
                         android:ems="10"
                         android:id="@+id/entry37"
                         android:maxLength="1"
-                        android:layout_column="7" />
+                        android:layout_column="7"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -422,7 +457,8 @@
                         android:ems="10"
                         android:id="@+id/entry38"
                         android:maxLength="1"
-                        android:layout_column="8" />
+                        android:layout_column="8"
+                        android:textSize="13dp" />
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
@@ -435,7 +471,8 @@
                         android:ems="10"
                         android:id="@+id/entry40"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -444,7 +481,8 @@
                         android:ems="10"
                         android:id="@+id/entry41"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -452,7 +490,8 @@
                         android:ems="10"
                         android:id="@+id/entry42"
                         android:maxLength="1"
-                        android:layout_column="2" />
+                        android:layout_column="2"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -461,7 +500,8 @@
                         android:ems="10"
                         android:id="@+id/entry43"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -469,7 +509,8 @@
                         android:ems="10"
                         android:id="@+id/entry44"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -478,7 +519,8 @@
                         android:ems="10"
                         android:id="@+id/entry45"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -486,7 +528,8 @@
                         android:ems="10"
                         android:id="@+id/entry46"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -495,7 +538,8 @@
                         android:ems="10"
                         android:id="@+id/entry47"
                         android:maxLength="1"
-                        android:layout_column="7" />
+                        android:layout_column="7"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -503,7 +547,8 @@
                         android:ems="10"
                         android:id="@+id/entry48"
                         android:maxLength="1"
-                        android:layout_column="8" />
+                        android:layout_column="8"
+                        android:textSize="13dp" />
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
@@ -516,7 +561,8 @@
                         android:ems="10"
                         android:id="@+id/entry50"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -525,7 +571,8 @@
                         android:ems="10"
                         android:id="@+id/entry51"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -533,7 +580,8 @@
                         android:ems="10"
                         android:id="@+id/entry52"
                         android:maxLength="1"
-                        android:layout_column="2" />
+                        android:layout_column="2"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -542,7 +590,8 @@
                         android:ems="10"
                         android:id="@+id/entry53"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -550,7 +599,8 @@
                         android:ems="10"
                         android:id="@+id/entry54"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -559,7 +609,8 @@
                         android:ems="10"
                         android:id="@+id/entry55"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -567,7 +618,8 @@
                         android:ems="10"
                         android:id="@+id/entry56"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -576,7 +628,8 @@
                         android:ems="10"
                         android:id="@+id/entry57"
                         android:maxLength="1"
-                        android:layout_column="7" />
+                        android:layout_column="7"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -584,7 +637,8 @@
                         android:ems="10"
                         android:id="@+id/entry58"
                         android:maxLength="1"
-                        android:layout_column="8" />
+                        android:layout_column="8"
+                        android:textSize="13dp" />
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
@@ -597,7 +651,8 @@
                         android:ems="10"
                         android:id="@+id/entry60"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -606,7 +661,8 @@
                         android:ems="10"
                         android:id="@+id/entry61"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -614,7 +670,8 @@
                         android:ems="10"
                         android:id="@+id/entry62"
                         android:maxLength="1"
-                        android:layout_column="2" />
+                        android:layout_column="2"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -623,7 +680,8 @@
                         android:ems="10"
                         android:id="@+id/entry63"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -631,7 +689,8 @@
                         android:ems="10"
                         android:id="@+id/entry64"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -640,7 +699,8 @@
                         android:ems="10"
                         android:id="@+id/entry65"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -648,7 +708,8 @@
                         android:ems="10"
                         android:id="@+id/entry66"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -657,7 +718,8 @@
                         android:ems="10"
                         android:id="@+id/entry67"
                         android:maxLength="1"
-                        android:layout_column="7" />
+                        android:layout_column="7"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -665,7 +727,8 @@
                         android:ems="10"
                         android:id="@+id/entry68"
                         android:maxLength="1"
-                        android:layout_column="8" />
+                        android:layout_column="8"
+                        android:textSize="13dp" />
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
@@ -678,7 +741,8 @@
                         android:ems="10"
                         android:id="@+id/entry70"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -687,7 +751,8 @@
                         android:ems="10"
                         android:id="@+id/entry71"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -695,7 +760,8 @@
                         android:ems="10"
                         android:id="@+id/entry72"
                         android:maxLength="1"
-                        android:layout_column="2" />
+                        android:layout_column="2"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -704,7 +770,8 @@
                         android:ems="10"
                         android:id="@+id/entry73"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -712,7 +779,8 @@
                         android:ems="10"
                         android:id="@+id/entry74"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -721,7 +789,8 @@
                         android:ems="10"
                         android:id="@+id/entry75"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -729,7 +798,8 @@
                         android:ems="10"
                         android:id="@+id/entry76"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -738,7 +808,8 @@
                         android:ems="10"
                         android:id="@+id/entry77"
                         android:maxLength="1"
-                        android:layout_column="7" />
+                        android:layout_column="7"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -746,7 +817,8 @@
                         android:ems="10"
                         android:id="@+id/entry78"
                         android:maxLength="1"
-                        android:layout_column="8" />
+                        android:layout_column="8"
+                        android:textSize="13dp" />
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
@@ -759,7 +831,8 @@
                         android:ems="10"
                         android:id="@+id/entry80"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -768,7 +841,8 @@
                         android:ems="10"
                         android:id="@+id/entry81"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -776,7 +850,8 @@
                         android:ems="10"
                         android:id="@+id/entry82"
                         android:maxLength="1"
-                        android:layout_column="2" />
+                        android:layout_column="2"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -785,7 +860,8 @@
                         android:ems="10"
                         android:id="@+id/entry83"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -793,7 +869,8 @@
                         android:ems="10"
                         android:id="@+id/entry84"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -802,7 +879,8 @@
                         android:ems="10"
                         android:id="@+id/entry85"
                         android:maxLength="1"
-                        android:layout_column="1" />
+                        android:layout_column="1"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -810,7 +888,8 @@
                         android:ems="10"
                         android:id="@+id/entry86"
                         android:maxLength="1"
-                        android:layout_column="0" />
+                        android:layout_column="0"
+                        android:textSize="13dp" />
 
                     <EditText
                         android:layout_width="30dp"
@@ -819,7 +898,8 @@
                         android:ems="10"
                         android:id="@+id/entry87"
                         android:maxLength="1"
-                        android:layout_column="7" />
+                        android:layout_column="7"
+                        android:textSize="13dp" />
                     <EditText
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -827,7 +907,8 @@
                         android:ems="10"
                         android:id="@+id/entry88"
                         android:maxLength="1"
-                        android:layout_column="8" />
+                        android:layout_column="8"
+                        android:textSize="13dp" />
                 </TableRow>
             </TableLayout>
 
@@ -857,7 +938,8 @@
                     android:layout_height="wrap_content"
                     android:text="Hint"
                     android:id="@+id/hintButton"
-                    android:layout_weight="0.18" />
+                    android:layout_weight="0.18"
+                    android:onClick="hintButtonPress" />
             </LinearLayout>
 
             <Button
@@ -866,7 +948,7 @@
                 android:layout_width="119dp"
                 android:layout_height="wrap_content"
                 android:text="Check Error" />
-
+            
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
