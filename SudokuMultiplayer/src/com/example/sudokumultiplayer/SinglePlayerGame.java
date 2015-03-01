@@ -1,31 +1,89 @@
 package com.example.sudokumultiplayer;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 public class SinglePlayerGame extends ActionBarActivity {
     Difficulty difficulty = Difficulty.EASY;
-
+    static ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
+    ArrayList<TableRow> sodokuNumberRows = new ArrayList<TableRow>();
+    private static ProgressBar mProgress;
+    Thread counterThread;
+    private static int threadStopper = 0;
+    private static int mProgressStatus = 0;
+    private static Handler mHandler = new Handler();
+    String[] solution;
+    int maxHints = 5;
+    int hintsUsed = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_player_game);
     }
+    private class HintServerRequest extends AsyncTask<String, Integer, String> {
+        String result = "";
 
+        protected String doInBackground(String... strings) {
+            HttpClient httpClient = new DefaultHttpClient();
+            String url = "http://104.131.185.217:3000/sudoku/solve";
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.setHeader("Content-Type",
+                    "application/x-www-form-urlencoded;charset=UTF-8");
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("grid", strings[0]));
+
+            try {
+                httpPost.setEntity(new UrlEncodedFormEntity(params));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                HttpResponse response = httpClient.execute(httpPost);
+                result = EntityUtils.toString(response.getEntity());
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        protected void onPostExecute(String result) {
+            Log.v("HTTP RESPONSE: ", result);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,8 +131,7 @@ public class SinglePlayerGame extends ActionBarActivity {
         System.out.println("Starting game with difficulty: " + difficulty.name());
         String sudokuString = generateSudokuString(difficulty.name());
         String[] numbers = sudokuString.split(",");
-        ArrayList<EditText> sodokuNumberSlots = getAllSudokuNumberSlots();
-
+        sodokuNumberSlots = getAllSudokuNumberSlots();
         //Write numbers into grid
         if(numbers.length == sodokuNumberSlots.size()){
             for (int i = 0; i < numbers.length; i++) {
@@ -83,10 +140,40 @@ public class SinglePlayerGame extends ActionBarActivity {
                     sodokuNumberSlots.get(i).setText(numbers[i]);
             }
         }
+        //get solution
+        String sol ="";
+        String board = "";
+        for (int i = 0; i < sodokuNumberSlots.size(); i++) {
+            sodokuNumberSlots.get(i).setId(i);
+            if(sodokuNumberSlots.get(i).getText().length() == 0) {
+                board = board+"0";
+            }
+            else {
+                board = board+sodokuNumberSlots.get(i).getText();
+            }
+            if (i != sodokuNumberSlots.size()-1) {
+                board = board+",";
+            }
+        }
+        HintServerRequest req = new HintServerRequest();
+        try {
+            sol = req.execute(board).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        solution = sol.split(",");
+
+        mProgress = (ProgressBar) findViewById(R.id.progressBar);
+        mProgress.setMax(81);
+
+        counterThread = new Thread(new CounterLoop());
+        counterThread.start();
     }
 
     private String generateSudokuString(String difficultly) {
-    	//TODO web request, generate Sudoku string based on different difficultly
+        //TODO web request, generate Sudoku string based on different difficultly
         String sudokuJsonString =  "{\n" +
                 "    \"sudoku\": \"8,6,0,9,0,0,0,4,3,9,0,0,2,0,3,8,6,1,0,4,3,0,6,1,9,7,0,0,0,9,1,5,0,4,3,0,0,0,7,4,3,0,0,8,0,4,3,2,6,8,9,1,0,7,0,1,0,0,9,6,3,0,4,0,9,6,0,0,4,7,1,8,0,0,0,7,1,8,5,0,0\"\n" +
                 "}\n";
@@ -110,13 +197,14 @@ public class SinglePlayerGame extends ActionBarActivity {
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        stop();
                         finish();
                     }
                 })
                 .setNegativeButton("No", null)
                 .show();
     }
-    
+
     public void checkErrorButtonPress(View view){
         final ArrayList<EditText> sodokuNumberSlots = getAllSudokuNumberSlots();
         //TODO web request for solution
@@ -127,45 +215,45 @@ public class SinglePlayerGame extends ActionBarActivity {
         if(solutions.length == sodokuNumberSlots.size()){
             for (int i = 0; i < solutions.length; i++) {
                 //when not empty, compare with solution
-            	String userInputNumber = sodokuNumberSlots.get(i).getText().toString();
+                String userInputNumber = sodokuNumberSlots.get(i).getText().toString();
                 if (!userInputNumber.isEmpty()){
-                	if(!userInputNumber.equals(solutions[i])){
-                		sodokuNumberSlots.get(i).setTextColor(Color.RED);
-                	}
+                    if(!userInputNumber.equals(solutions[i])){
+                        sodokuNumberSlots.get(i).setTextColor(Color.RED);
+                    }
                 }
             }
         }
-        
+
         //After 3 seconds, reset background
         new CountDownTimer(3000, 1000){
-        	public void onTick(long millisUntilFinished) {}
-        	public void onFinish() {
-        		//reset background
-        		for (int i = 0; i < sodokuNumberSlots.size(); i++) {
-        			sodokuNumberSlots.get(i).setTextColor(Color.BLACK);
-        		}
-        	}
+            public void onTick(long millisUntilFinished) {}
+            public void onFinish() {
+                //reset background
+                for (int i = 0; i < sodokuNumberSlots.size(); i++) {
+                    sodokuNumberSlots.get(i).setTextColor(Color.BLACK);
+                }
+            }
         }.start();
     }
-    
+
     public void helpButtonPress(View view) {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_menu_help)
                 .setTitle("Help")
-                //TODO: add a custom layout showing the rules of sudoku
+                        //TODO: add a custom layout showing the rules of sudoku
                 .setMessage("Click on hint to automatically fill in one of the squares, be careful since hints are limited.")
                 .setNegativeButton("Close", null)
                 .show();
     }
-    
+
     //get all EditText elements
     private ArrayList<EditText> getAllSudokuNumberSlots(){
-    	TableLayout myTableLayout = (TableLayout) findViewById( R.id.myTableLayout);
+        TableLayout myTableLayout = (TableLayout) findViewById( R.id.myTableLayout);
         ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
         ArrayList<TableRow> sodokuNumberRows = new ArrayList<TableRow>();
         for(int i = 0; i < myTableLayout.getChildCount(); i++){
-          if(myTableLayout.getChildAt( i ) instanceof TableRow )
-              sodokuNumberRows.add((TableRow) myTableLayout.getChildAt(i));
+            if(myTableLayout.getChildAt( i ) instanceof TableRow )
+                sodokuNumberRows.add((TableRow) myTableLayout.getChildAt(i));
         }
         //System.out.println("Table Rows = " + sodokuNumberRows.size());
 
@@ -175,8 +263,63 @@ public class SinglePlayerGame extends ActionBarActivity {
                     sodokuNumberSlots.add((EditText) sodokuNumberRows.get(i).getChildAt(j));
             }
         }
-        
         //System.out.println("Slot amount = " + sodokuNumberSlots.size());
         return sodokuNumberSlots;
+    }
+
+    public void hintButtonPress(View view) throws ExecutionException, InterruptedException {
+        TableLayout tl = (TableLayout)findViewById(R.id.myTableLayout);
+        View v = tl.findFocus();
+        String res = "";
+        if(v instanceof EditText && hintsUsed < maxHints) {
+            hintsUsed++;
+            EditText selected = (EditText) v;
+            if (selected.getText().length() != 0) {
+                return;
+            }
+            int id = selected.getId();
+            selected.setText(solution[id]);
+        }
+        else if (hintsUsed >= maxHints) {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.stat_sys_warning)
+                    .setTitle("Hint limit reached.")
+                    .setMessage("No more hints left!")
+                    .setNegativeButton("Close", null)
+                    .show();
+        }
+    }
+    private static int countProgress(){
+        int progressCounter = 0;
+        for (int i = 0; i < sodokuNumberSlots.size(); i++){
+            if(sodokuNumberSlots.get(i).getText().length() != 0)
+                progressCounter++;
+        }
+        Log.v("Counter", ""+progressCounter);
+        return progressCounter;
+    }
+
+    private static class CounterLoop implements Runnable{
+        public void run() {
+            while (mProgressStatus < 81 && threadStopper == 0) {
+                mProgressStatus = countProgress();
+
+                // Update the progress bar
+                mHandler.post(new Runnable() {
+                    public void run() {
+                        mProgress.setProgress(mProgressStatus);
+                    }
+                });
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private static void stop(){
+        threadStopper = 1;
     }
 }
