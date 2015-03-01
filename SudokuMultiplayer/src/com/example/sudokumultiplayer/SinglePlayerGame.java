@@ -69,7 +69,7 @@ public class SinglePlayerGame extends ActionBarActivity {
 
     public void startGame (View view) {
         System.out.println("Starting game with difficulty: " + difficulty.name());
-        String sudokuString = generateSudokuString();
+        String sudokuString = generateSudokuString(difficulty.name());
         String[] numbers = sudokuString.split(",");
         TableLayout myTableLayout = (TableLayout) findViewById( R.id.myTableLayout);
         ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
@@ -98,7 +98,8 @@ public class SinglePlayerGame extends ActionBarActivity {
         }
     }
 
-    private String generateSudokuString() {
+    private String generateSudokuString(String difficultly) {
+    	//TODO web request, generate Sudoku string based on different difficultly
         String sudokuJsonString =  "{\n" +
                 "    \"sudoku\": \"8,6,0,9,0,0,0,4,3,9,0,0,2,0,3,8,6,1,0,4,3,0,6,1,9,7,0,0,0,9,1,5,0,4,3,0,0,0,7,4,3,0,0,8,0,4,3,2,6,8,9,1,0,7,0,1,0,0,9,6,3,0,4,0,9,6,0,0,4,7,1,8,0,0,0,7,1,8,5,0,0\"\n" +
                 "}\n";
@@ -128,6 +129,11 @@ public class SinglePlayerGame extends ActionBarActivity {
                 .setNegativeButton("No", null)
                 .show();
     }
+    
+    public void checkErrorButtonPress(View view){
+    	
+    }
+    
     public void helpButtonPress(View view) {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_menu_help)
