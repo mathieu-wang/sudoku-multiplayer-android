@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -71,24 +72,9 @@ public class SinglePlayerGame extends ActionBarActivity {
         System.out.println("Starting game with difficulty: " + difficulty.name());
         String sudokuString = generateSudokuString(difficulty.name());
         String[] numbers = sudokuString.split(",");
-        TableLayout myTableLayout = (TableLayout) findViewById( R.id.myTableLayout);
-        ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
-        ArrayList<TableRow> sodokuNumberRows = new ArrayList<TableRow>();
-        for(int i = 0; i < myTableLayout.getChildCount(); i++){
-          if(myTableLayout.getChildAt( i ) instanceof TableRow )
-              sodokuNumberRows.add((TableRow) myTableLayout.getChildAt(i));
-        }
-        //System.out.println("Table Rows = " + sodokuNumberRows.size());
+        ArrayList<EditText> sodokuNumberSlots = getAllSudokuNumberSlots();
 
-        for (int i = 0; i < sodokuNumberRows.size(); i++) {
-            for (int j = 0; j < sodokuNumberRows.get(i).getChildCount(); j++) {
-                if(sodokuNumberRows.get(i).getChildAt(j) instanceof EditText )
-                    sodokuNumberSlots.add((EditText) sodokuNumberRows.get(i).getChildAt(j));
-            }
-        }
-
-        //System.out.println("Slot amount = " + sodokuNumberSlots.size());
-
+        //Write numbers into grid
         if(numbers.length == sodokuNumberSlots.size()){
             for (int i = 0; i < numbers.length; i++) {
                 //skip 0, left empty
@@ -131,6 +117,23 @@ public class SinglePlayerGame extends ActionBarActivity {
     }
     
     public void checkErrorButtonPress(View view){
+        ArrayList<EditText> sodokuNumberSlots = getAllSudokuNumberSlots();
+        //TODO web request for solution
+        String[] solutions = new String[81];
+
+        if(solutions.length == sodokuNumberSlots.size()){
+            for (int i = 0; i < solutions.length; i++) {
+                //when not empty, compare with solution
+            	String userInputNumber = sodokuNumberSlots.get(i).getText().toString();
+                if (!userInputNumber.isEmpty()){
+                	if(!userInputNumber.equals(solutions[i])){
+                		sodokuNumberSlots.get(i).setBackgroundColor(Color.RED);
+                	}
+                }
+            }
+        }
+        
+        //TODO reset background to white
     	
     }
     
@@ -142,5 +145,27 @@ public class SinglePlayerGame extends ActionBarActivity {
                 .setMessage("Click on hint to automatically fill in one of the squares, be careful since hints are limited.")
                 .setNegativeButton("Close", null)
                 .show();
+    }
+    
+    //get all EditText elements
+    private ArrayList<EditText> getAllSudokuNumberSlots(){
+    	TableLayout myTableLayout = (TableLayout) findViewById( R.id.myTableLayout);
+        ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
+        ArrayList<TableRow> sodokuNumberRows = new ArrayList<TableRow>();
+        for(int i = 0; i < myTableLayout.getChildCount(); i++){
+          if(myTableLayout.getChildAt( i ) instanceof TableRow )
+              sodokuNumberRows.add((TableRow) myTableLayout.getChildAt(i));
+        }
+        //System.out.println("Table Rows = " + sodokuNumberRows.size());
+
+        for (int i = 0; i < sodokuNumberRows.size(); i++) {
+            for (int j = 0; j < sodokuNumberRows.get(i).getChildCount(); j++) {
+                if(sodokuNumberRows.get(i).getChildAt(j) instanceof EditText )
+                    sodokuNumberSlots.add((EditText) sodokuNumberRows.get(i).getChildAt(j));
+            }
+        }
+        
+        //System.out.println("Slot amount = " + sodokuNumberSlots.size());
+        return sodokuNumberSlots;
     }
 }
