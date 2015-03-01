@@ -164,6 +164,8 @@ public class SinglePlayerGame extends ActionBarActivity {
             e.printStackTrace();
         }
         solution = sol.split(",");
+        if(solution[0].startsWith("{\"sudoku\":["))
+        	solution[0] = solution[0].replace("{\"sudoku\":[", "");
 
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
         mProgress.setMax(81);
@@ -207,17 +209,13 @@ public class SinglePlayerGame extends ActionBarActivity {
 
     public void checkErrorButtonPress(View view){
         final ArrayList<EditText> sodokuNumberSlots = getAllSudokuNumberSlots();
-        //TODO web request for solution
-        //String[] solutions = new String[81];
-        String sudokuString = generateSudokuString(difficulty.name());
-        String[] solutions = sudokuString.split(",");
 
-        if(solutions.length == sodokuNumberSlots.size()){
-            for (int i = 0; i < solutions.length; i++) {
+        if(solution.length == sodokuNumberSlots.size()){
+            for (int i = 0; i < solution.length; i++) {
                 //when not empty, compare with solution
                 String userInputNumber = sodokuNumberSlots.get(i).getText().toString();
                 if (!userInputNumber.isEmpty()){
-                    if(!userInputNumber.equals(solutions[i])){
+                    if(!userInputNumber.equals(solution[i])){
                         sodokuNumberSlots.get(i).setTextColor(Color.RED);
                     }
                 }
