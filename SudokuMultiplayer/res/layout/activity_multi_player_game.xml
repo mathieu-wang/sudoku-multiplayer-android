@@ -875,7 +875,22 @@
                 android:id="@+id/button"
                 android:layout_weight="0.18" />
         </LinearLayout>
+                <Button
+                    android:id="@+id/checkError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="37dp"
+                    android:onClick="checkErrorButtonPress"
+                    android:scrollbars="vertical"
+                    android:text="Check Error" />
 
+                <Button
+                    android:id="@+id/submitButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginRight="19dp"
+                    android:layout_weight="0.17"
+                    android:onClick="submitButtonPress"
+                    android:text="Submit" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
