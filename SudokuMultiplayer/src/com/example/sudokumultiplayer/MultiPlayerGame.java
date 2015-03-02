@@ -174,7 +174,7 @@ public class MultiPlayerGame extends ActionBarActivity {
         //remove content of the first element
         if (solution[0].startsWith("{\"sudoku\":["))
             solution[0] = solution[0].replace("{\"sudoku\":[", "");
-        //remove contenc of the last element
+        //remove content of the last element
         if(Character.isDigit(solution[solution.length-1].charAt(0))){
             solution[solution.length-1] = "" + solution[solution.length-1].charAt(0);
         }
@@ -243,7 +243,7 @@ public class MultiPlayerGame extends ActionBarActivity {
             isCorrect = true;
 
         AlertDialog.Builder msg = new AlertDialog.Builder(this);
-        msg.setTitle("Error Message");
+        msg.setTitle("Game Result");
         if (isCorrect)
             msg.setMessage("You win!");
         else
