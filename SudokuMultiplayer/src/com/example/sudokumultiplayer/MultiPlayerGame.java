@@ -20,18 +20,17 @@ import org.apache.http.util.EntityUtils;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.os.Handler;
-import android.support.v7.app.ActionBarActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -172,8 +171,16 @@ public class MultiPlayerGame extends ActionBarActivity {
             e.printStackTrace();
         }
         solution = sol.split(",");
+        //remove content of the first element
         if (solution[0].startsWith("{\"sudoku\":["))
             solution[0] = solution[0].replace("{\"sudoku\":[", "");
+        //remove contenc of the last element
+        if(Character.isDigit(solution[solution.length-1].charAt(0))){
+            solution[solution.length-1] = "" + solution[solution.length-1].charAt(0);
+        }
+
+        mProgress = (ProgressBar) findViewById(R.id.progressBar);
+        mProgress.setMax(81);
 
         counterThread = new Thread(new CounterLoop());
         counterThread.start();
@@ -294,14 +301,14 @@ public class MultiPlayerGame extends ActionBarActivity {
 
     // get all EditText elements
     private ArrayList<EditText> getAllSudokuNumberSlots() {
-        TableLayout myTableLayout = (TableLayout) findViewById(R.id.myTableLayout);
+        TableLayout myTableLayout = (TableLayout) findViewById(R.id.multiPlayerTableLayout);
         ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
         ArrayList<TableRow> sodokuNumberRows = new ArrayList<TableRow>();
         for (int i = 0; i < myTableLayout.getChildCount(); i++) {
             if (myTableLayout.getChildAt(i) instanceof TableRow)
                 sodokuNumberRows.add((TableRow) myTableLayout.getChildAt(i));
         }
-        // System.out.println("Table Rows = " + sodokuNumberRows.size());
+        //System.out.println("Table Rows = " + sodokuNumberRows.size());
 
         for (int i = 0; i < sodokuNumberRows.size(); i++) {
             for (int j = 0; j < sodokuNumberRows.get(i).getChildCount(); j++) {
@@ -310,7 +317,7 @@ public class MultiPlayerGame extends ActionBarActivity {
                             .getChildAt(j));
             }
         }
-        // System.out.println("Slot amount = " + sodokuNumberSlots.size());
+        //System.out.println("Slot amount = " + sodokuNumberSlots.size());
         return sodokuNumberSlots;
     }
 
@@ -323,7 +330,7 @@ public class MultiPlayerGame extends ActionBarActivity {
 
     public void hintButtonPress(View view) throws ExecutionException,
             InterruptedException {
-        TableLayout tl = (TableLayout) findViewById(R.id.myTableLayout);
+        TableLayout tl = (TableLayout) findViewById(R.id.multiPlayerTableLayout);
         View v = tl.findFocus();
         String res = "";
         if (v instanceof EditText && hintsUsed < maxHints) {

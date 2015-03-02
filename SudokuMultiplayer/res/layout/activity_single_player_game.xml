@@ -96,7 +96,7 @@
                 android:text="Start Game" />
 
             <TableLayout
-                android:id="@+id/myTableLayout"
+                android:id="@+id/singlePlayerTableLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal" >

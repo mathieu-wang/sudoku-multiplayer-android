@@ -202,8 +202,13 @@ public class SinglePlayerGame extends ActionBarActivity {
             e.printStackTrace();
         }
         solution = sol.split(",");
+        //remove content of the first element
         if (solution[0].startsWith("{\"sudoku\":["))
             solution[0] = solution[0].replace("{\"sudoku\":[", "");
+        //remove contenc of the last element
+        if(Character.isDigit(solution[solution.length-1].charAt(0))){
+            solution[solution.length-1] = "" + solution[solution.length-1].charAt(0);
+        }
 
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
         mProgress.setMax(81);
@@ -327,7 +332,7 @@ public class SinglePlayerGame extends ActionBarActivity {
 
     // get all EditText elements
     private ArrayList<EditText> getAllSudokuNumberSlots() {
-        TableLayout myTableLayout = (TableLayout) findViewById(R.id.myTableLayout);
+        TableLayout myTableLayout = (TableLayout) findViewById(R.id.singlePlayerTableLayout);
         ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
         ArrayList<TableRow> sodokuNumberRows = new ArrayList<TableRow>();
         for (int i = 0; i < myTableLayout.getChildCount(); i++) {
@@ -356,7 +361,7 @@ public class SinglePlayerGame extends ActionBarActivity {
 
     public void hintButtonPress(View view) throws ExecutionException,
             InterruptedException {
-        TableLayout tl = (TableLayout) findViewById(R.id.myTableLayout);
+        TableLayout tl = (TableLayout) findViewById(R.id.singlePlayerTableLayout);
         View v = tl.findFocus();
         String res = "";
         if (v instanceof EditText && hintsUsed < maxHints) {
