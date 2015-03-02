@@ -104,14 +104,16 @@
             android:id="@+id/progressBar"
             android:layout_gravity="center_horizontal" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Large Text"
-            android:id="@+id/textView3"
-            android:layout_gravity="center_horizontal" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opponent Matching"
+                android:id="@+id/OpponentMatching"
+                android:onClick="matching"
+                android:layout_weight="0.74"
+                android:layout_gravity="center_horizontal" />
 
-        <TableLayout
+            <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
