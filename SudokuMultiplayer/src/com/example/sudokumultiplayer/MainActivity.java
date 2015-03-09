@@ -59,7 +59,12 @@ public class MainActivity extends ActionBarActivity {
         Intent guest_intent = new Intent(this, GuestMainActivity.class);
         startActivity(guest_intent);
     }
-    
+
+    public void solverButtonPress(View view) {
+        Intent solver_intent = new Intent(this, SolverActivity.class);
+        startActivity(solver_intent);
+    }
+
     public void helpButtonPress(View view) {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_menu_help)
