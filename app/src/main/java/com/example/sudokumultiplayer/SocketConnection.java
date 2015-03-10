@@ -27,6 +27,8 @@ public class SocketConnection extends Application{
     {
         try {
             mSocket = IO.socket("http://104.131.185.217:4000");
+//              mSocket = IO.socket("http://104.131.185.217:3000");
+
         } catch (URISyntaxException e) {}
     }
 
@@ -56,6 +58,7 @@ public class SocketConnection extends Application{
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+//                    JSONObject data = (JSONObject) args[0];
                     JSONObject data = (JSONObject) args[0];
                     String result;
                     try {
@@ -63,7 +66,7 @@ public class SocketConnection extends Application{
                     } catch (JSONException e) {
                         return;
                     }
-                    Log.d("Testing", result);
+                    Log.d("socket", data.toString());
                 }
             });
         }

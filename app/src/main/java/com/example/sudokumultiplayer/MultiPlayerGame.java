@@ -53,10 +53,15 @@ public class MultiPlayerGame extends ActionBarActivity {
 
     private Socket mSocket = connection.getmSocket();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_player_game);
+        connection.setActivity(this);
+
+//        mSocket.on("connect", connection.receiveTest);
+        mSocket.on("start", connection.receiveTest);
     }
 
     private class HintServerRequest extends AsyncTask<String, Integer, String> {
@@ -145,7 +150,7 @@ public class MultiPlayerGame extends ActionBarActivity {
 
 
         Log.v("socket", "username is: " + connection.getCurrentUsername());
-        connection.sendData("username", connection.getCurrentUsername());
+        connection.sendData("user", connection.getCurrentUsername());
 
 
         String[] numbers = sudokuString.split(",");

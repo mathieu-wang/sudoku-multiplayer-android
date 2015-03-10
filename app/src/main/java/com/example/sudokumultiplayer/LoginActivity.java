@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.github.nkzawa.socketio.client.Socket;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -27,7 +29,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-import com.github.nkzawa.socketio.client.Socket;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -50,6 +51,9 @@ public class LoginActivity extends ActionBarActivity {
 
         usernameEditText = (EditText) findViewById(R.id.username_text);
         passwordEditText = (EditText) findViewById(R.id.password_text);
+        connection.setActivity(this);
+//        mSocket.on("welcome", connection.receiveTest);
+//        mSocket.on("connect", connection.receiveTest);
     }
 
 
@@ -140,7 +144,6 @@ public class LoginActivity extends ActionBarActivity {
                 }
                 connection.setCurrentUsername(username);
             }
-
             if (res.indexOf("access_token") > -1){
 
                 Intent play_intent = new Intent(this, GuestMainActivity.class);
