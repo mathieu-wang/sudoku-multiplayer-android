@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import com.github.nkzawa.socketio.client.Socket;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -36,6 +37,10 @@ public class LoginActivity extends ActionBarActivity {
 
     public String accessToken = "";
     public String refreshToken = "";
+
+    private SocketConnection connection = SocketConnection.getInstance();
+
+    private Socket mSocket = connection.getmSocket();
 
 
     @Override
@@ -133,7 +138,9 @@ public class LoginActivity extends ActionBarActivity {
                     refreshToken = tokens[i+2];
                     Log.v("REFRESH_TOKEN : ", refreshToken);
                 }
+                connection.setCurrentUsername(username);
             }
+
             if (res.indexOf("access_token") > -1){
 
                 Intent play_intent = new Intent(this, GuestMainActivity.class);

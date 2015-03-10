@@ -34,6 +34,8 @@ import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import com.github.nkzawa.socketio.client.Socket;
+
 public class MultiPlayerGame extends ActionBarActivity {
     static ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
     ArrayList<TableRow> sodokuNumberRows = new ArrayList<TableRow>();
@@ -45,6 +47,11 @@ public class MultiPlayerGame extends ActionBarActivity {
     String[] solution;
     int maxHints = 5;
     int hintsUsed = 0;
+
+
+    private SocketConnection connection = SocketConnection.getInstance();
+
+    private Socket mSocket = connection.getmSocket();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +142,12 @@ public class MultiPlayerGame extends ActionBarActivity {
     public void matching(View view) {
         String sudokuString = generateSudokuString();
         Log.v("sudoku: ", sudokuString);
+
+
+        Log.v("socket", "username is: " + connection.getCurrentUsername());
+        connection.sendData("username", connection.getCurrentUsername());
+
+
         String[] numbers = sudokuString.split(",");
         sodokuNumberSlots = getAllSudokuNumberSlots();
         // Write numbers into grid
