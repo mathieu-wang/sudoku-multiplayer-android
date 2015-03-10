@@ -33,6 +33,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.github.nkzawa.socketio.client.Socket;
 
@@ -49,7 +50,7 @@ public class MultiPlayerGame extends ActionBarActivity {
     int hintsUsed = 0;
 
 
-    private SocketConnection connection = SocketConnection.getInstance();
+    private static SocketConnection connection = SocketConnection.getInstance();
 
     private Socket mSocket = connection.getmSocket();
 
@@ -61,7 +62,10 @@ public class MultiPlayerGame extends ActionBarActivity {
         connection.setActivity(this);
 
 //        mSocket.on("connect", connection.receiveTest);
-        mSocket.on("start", connection.receiveTest);
+        mSocket.on("start", connection.startGame);
+
+        mSocket.on("oprogress", connection.updateProgress);
+
     }
 
     private class HintServerRequest extends AsyncTask<String, Integer, String> {
@@ -375,6 +379,9 @@ public class MultiPlayerGame extends ActionBarActivity {
                 progressCounter++;
         }
         Log.v("Counter", "" + progressCounter);
+        if(connection.getGameStart()) {
+            connection.sendData("progress", Integer.toString(progressCounter));
+        }
         return progressCounter;
     }
 
@@ -384,11 +391,12 @@ public class MultiPlayerGame extends ActionBarActivity {
                 mProgressStatus = countProgress();
 
                 // Update the progress bar
-                mHandler.post(new Runnable() {
-                    public void run() {
-                        mProgress.setProgress(mProgressStatus);
-                    }
-                });
+//                mHandler.post(new Runnable() {
+//                    public void run() {
+//                        mProgress.setProgress(mProgressStatus);
+//
+//                    }
+//                });
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {

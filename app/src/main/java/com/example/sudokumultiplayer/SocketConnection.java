@@ -7,6 +7,8 @@ package com.example.sudokumultiplayer;
 import android.app.Activity;
 import android.app.Application;
 import android.util.Log;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
@@ -22,6 +24,15 @@ public class SocketConnection extends Application{
     private static SocketConnection instance;
     private Activity activity;
     private String currentUsername;
+    private boolean gameStart = false;
+
+    public void setGameStart(boolean status) {
+        gameStart = status;
+    }
+
+    public boolean getGameStart() {
+        return gameStart;
+    }
 
     private static Socket mSocket;
     {
@@ -52,7 +63,7 @@ public class SocketConnection extends Application{
         this.activity = activity;
     }
 
-    public Emitter.Listener receiveTest = new Emitter.Listener() {
+    public Emitter.Listener startGame = new Emitter.Listener() {
         @Override
         public void call(final Object... args) {
             activity.runOnUiThread(new Runnable() {
@@ -63,6 +74,34 @@ public class SocketConnection extends Application{
                     String result;
                     try {
                         result = data.getString("message");
+                        TextView opponentView = (TextView)activity.findViewById(R.id.opponent_name);
+                        opponentView.setText(result);
+                        setGameStart(true);
+                    } catch (JSONException e) {
+                        return;
+                    }
+                    Log.d("socket", data.toString());
+                }
+            });
+        }
+    };
+
+    public Emitter.Listener updateProgress = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+//                    JSONObject data = (JSONObject) args[0];
+                    JSONObject data = (JSONObject) args[0];
+                    String result;
+                    try {
+                        result = data.getString("message");
+                        ProgressBar mProgress = (ProgressBar) activity.findViewById(R.id.progressBar);
+                        Log.d("result", result);
+
+                        int oprogress = Integer.parseInt(result);
+                        mProgress.setProgress(oprogress);
                     } catch (JSONException e) {
                         return;
                     }
