@@ -47,6 +47,7 @@ public class SinglePlayerGame extends ActionBarActivity {
     String[] solution;
     int maxHints = 5;
     int hintsUsed = 0;
+    private String currentDifficult = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,8 +163,15 @@ public class SinglePlayerGame extends ActionBarActivity {
 
     public void startGame(View view) {
 
+        if(currentDifficult.equals(difficulty.name())) {
+            return;
+        }
+
+        currentDifficult = difficulty.name();
+
         System.out.println("Starting game with difficulty: "
                 + difficulty.name());
+
         String sudokuString = generateSudokuString();
         Log.v("sudoku: ", sudokuString);
         String[] numbers = sudokuString.split(",");
