@@ -13,5 +13,6 @@
     <string name="title_activity_view_stats">View Stats</string>
     <string name="title_activity_single_player_game">Single Player</string>
     <string name="title_activity_multi_player_game">MultiPlayer</string>
+    <string name="title_activity_view_leaderboards">Leaderboards</string>
 
 </resources>

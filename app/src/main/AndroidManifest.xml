@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
     <android:uses-permission
@@ -79,6 +79,14 @@
         <activity
             android:name=".ViewStatsActivity"
             android:label="@string/title_activity_view_stats"
+            android:parentActivityName=".GuestMainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.sudokumultiplayer.GuestMainActivity" />
+        </activity>
+        <activity
+            android:name=".ViewLeaderboardsActivity"
+            android:label="@string/title_activity_view_leaderboards"
             android:parentActivityName=".GuestMainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

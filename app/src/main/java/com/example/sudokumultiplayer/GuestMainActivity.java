@@ -56,6 +56,11 @@ public class GuestMainActivity extends ActionBarActivity {
         startActivity(view_stats_intent);
     }
 
+    public void viewLeaderboardsButtonPress(View view) {
+        Intent view_leaderboards_intent = new Intent(this, ViewLeaderboardsActivity.class);
+        startActivity(view_leaderboards_intent);
+    }
+
     public void signOutButtonPress(View view) {
         final Intent main_page_intent = new Intent(this, MainActivity.class);
         new AlertDialog.Builder(this)
