@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TableLayout;
@@ -53,6 +54,8 @@ public class SinglePlayerGame extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_player_game);
+        GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new ButtonAdapter(this));
     }
 
     private class HintServerRequest extends AsyncTask<String, Integer, String> {
