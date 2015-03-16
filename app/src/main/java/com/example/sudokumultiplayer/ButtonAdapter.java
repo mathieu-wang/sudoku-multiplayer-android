@@ -15,11 +15,7 @@ import android.widget.GridView;
 public class ButtonAdapter extends BaseAdapter {
     private Context mContext;
     private int mPosition;
-    public String[] filesnames = {
-            "File 1",
-            "File 2",
-            "Roflcopters"
-    };
+    public String[] filesnames = new String[81];
 
 
     // Gets the context so it can be used later
@@ -50,8 +46,8 @@ public class ButtonAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             btn = new Button(mContext);
-            btn.setLayoutParams(new GridView.LayoutParams(100, 55));
-            btn.setPadding(1, 1, 1, 1);
+            btn.setLayoutParams(new GridView.LayoutParams(100, 100));
+            btn.setPadding(0, 0, 0, 0);
         }
         else {
             btn = (Button) convertView;

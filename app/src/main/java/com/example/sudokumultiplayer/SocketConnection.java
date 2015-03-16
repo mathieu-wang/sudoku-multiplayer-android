@@ -37,7 +37,8 @@ public class SocketConnection extends Application{
     private static Socket mSocket;
     {
         try {
-            mSocket = IO.socket("http://104.131.185.217:4000");
+//            mSocket = IO.socket("http://104.131.185.217:4000");
+            mSocket = IO.socket("http://104.131.185.217:4001");
 //              mSocket = IO.socket("http://104.131.185.217:3000");
 
         } catch (URISyntaxException e) {}
