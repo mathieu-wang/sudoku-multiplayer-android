@@ -37,8 +37,8 @@ import org.apache.http.util.EntityUtils;
 
 public class SinglePlayerGame extends ActionBarActivity {
     Difficulty difficulty = Difficulty.EASY;
-    static ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
-    ArrayList<TableRow> sodokuNumberRows = new ArrayList<TableRow>();
+    static ArrayList<EditText> sudokuNumberSlots = new ArrayList<EditText>();
+    ArrayList<TableRow> sudokuNumberRows = new ArrayList<TableRow>();
     private static ProgressBar mProgress;
     Thread counterThread;
     private static int threadStopper = 0;
@@ -175,29 +175,29 @@ public class SinglePlayerGame extends ActionBarActivity {
         String sudokuString = generateSudokuString();
         Log.v("sudoku: ", sudokuString);
         String[] numbers = sudokuString.split(",");
-        sodokuNumberSlots = getAllSudokuNumberSlots();
+        sudokuNumberSlots = getAllSudokuNumberSlots();
         // Write numbers into grid
         resetAllSudokuNumberSlots();
-        if (numbers.length == sodokuNumberSlots.size()) {
+        if (numbers.length == sudokuNumberSlots.size()) {
             for (int i = 0; i < numbers.length; i++) {
                 // skip 0, left empty
                 if (!numbers[i].equals("0"))
-                    sodokuNumberSlots.get(i).setText(numbers[i]);
+                    sudokuNumberSlots.get(i).setText(numbers[i]);
                 else
-                    sodokuNumberSlots.get(i).setText("");
+                    sudokuNumberSlots.get(i).setText("");
             }
         }
         // get solution
         String sol = "";
         String board = "";
-        for (int i = 0; i < sodokuNumberSlots.size(); i++) {
-            sodokuNumberSlots.get(i).setId(i);
-            if (sodokuNumberSlots.get(i).getText().length() == 0) {
+        for (int i = 0; i < sudokuNumberSlots.size(); i++) {
+            sudokuNumberSlots.get(i).setId(i);
+            if (sudokuNumberSlots.get(i).getText().length() == 0) {
                 board = board + "0";
             } else {
-                board = board + sodokuNumberSlots.get(i).getText();
+                board = board + sudokuNumberSlots.get(i).getText();
             }
-            if (i != sodokuNumberSlots.size() - 1) {
+            if (i != sudokuNumberSlots.size() - 1) {
                 board = board + ",";
             }
         }
@@ -267,8 +267,8 @@ public class SinglePlayerGame extends ActionBarActivity {
         boolean isCorrect = false;
         String userResults = new String("");
         String solutionString = new String("");
-        for (int i = 0; i < sodokuNumberSlots.size(); i++) {
-            userResults += sodokuNumberSlots.get(i).getText().toString();
+        for (int i = 0; i < sudokuNumberSlots.size(); i++) {
+            userResults += sudokuNumberSlots.get(i).getText().toString();
         }
 
         for (int i = 0; i < solution.length; i++) {
@@ -299,16 +299,16 @@ public class SinglePlayerGame extends ActionBarActivity {
     }
 
     public void checkErrorButtonPress(View view) {
-        final ArrayList<EditText> sodokuNumberSlots = getAllSudokuNumberSlots();
+        final ArrayList<EditText> sudokuNumberSlots = getAllSudokuNumberSlots();
 
-        if (solution.length == sodokuNumberSlots.size()) {
+        if (solution.length == sudokuNumberSlots.size()) {
             for (int i = 0; i < solution.length; i++) {
                 // when not empty, compare with solution
-                String userInputNumber = sodokuNumberSlots.get(i).getText()
+                String userInputNumber = sudokuNumberSlots.get(i).getText()
                         .toString();
                 if (!userInputNumber.isEmpty()) {
                     if (!userInputNumber.equals(solution[i])) {
-                        sodokuNumberSlots.get(i).setTextColor(Color.RED);
+                        sudokuNumberSlots.get(i).setTextColor(Color.RED);
                     }
                 }
             }
@@ -321,8 +321,8 @@ public class SinglePlayerGame extends ActionBarActivity {
 
             public void onFinish() {
                 // reset background
-                for (int i = 0; i < sodokuNumberSlots.size(); i++) {
-                    sodokuNumberSlots.get(i).setTextColor(Color.BLACK);
+                for (int i = 0; i < sudokuNumberSlots.size(); i++) {
+                    sudokuNumberSlots.get(i).setTextColor(Color.BLACK);
                 }
             }
         }.start();
@@ -341,29 +341,29 @@ public class SinglePlayerGame extends ActionBarActivity {
     // get all EditText elements
     private ArrayList<EditText> getAllSudokuNumberSlots() {
         TableLayout myTableLayout = (TableLayout) findViewById(R.id.singlePlayerTableLayout);
-        ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
-        ArrayList<TableRow> sodokuNumberRows = new ArrayList<TableRow>();
+        ArrayList<EditText> sudokuNumberSlots = new ArrayList<EditText>();
+        ArrayList<TableRow> sudokuNumberRows = new ArrayList<TableRow>();
         for (int i = 0; i < myTableLayout.getChildCount(); i++) {
             if (myTableLayout.getChildAt(i) instanceof TableRow)
-                sodokuNumberRows.add((TableRow) myTableLayout.getChildAt(i));
+                sudokuNumberRows.add((TableRow) myTableLayout.getChildAt(i));
         }
-        // System.out.println("Table Rows = " + sodokuNumberRows.size());
+        // System.out.println("Table Rows = " + sudokuNumberRows.size());
 
-        for (int i = 0; i < sodokuNumberRows.size(); i++) {
-            for (int j = 0; j < sodokuNumberRows.get(i).getChildCount(); j++) {
-                if (sodokuNumberRows.get(i).getChildAt(j) instanceof EditText)
-                    sodokuNumberSlots.add((EditText) sodokuNumberRows.get(i)
+        for (int i = 0; i < sudokuNumberRows.size(); i++) {
+            for (int j = 0; j < sudokuNumberRows.get(i).getChildCount(); j++) {
+                if (sudokuNumberRows.get(i).getChildAt(j) instanceof EditText)
+                    sudokuNumberSlots.add((EditText) sudokuNumberRows.get(i)
                             .getChildAt(j));
             }
         }
-        // System.out.println("Slot amount = " + sodokuNumberSlots.size());
-        return sodokuNumberSlots;
+        // System.out.println("Slot amount = " + sudokuNumberSlots.size());
+        return sudokuNumberSlots;
     }
 
     // reset all EditText elements to empty
     private void resetAllSudokuNumberSlots() {
-        for (int i = 0; i < sodokuNumberSlots.size(); i++) {
-            sodokuNumberSlots.get(i).setText("");
+        for (int i = 0; i < sudokuNumberSlots.size(); i++) {
+            sudokuNumberSlots.get(i).setText("");
         }
     }
 
@@ -391,8 +391,8 @@ public class SinglePlayerGame extends ActionBarActivity {
 
     private static int countProgress() {
         int progressCounter = 0;
-        for (int i = 0; i < sodokuNumberSlots.size(); i++) {
-            if (sodokuNumberSlots.get(i).getText().length() != 0)
+        for (int i = 0; i < sudokuNumberSlots.size(); i++) {
+            if (sudokuNumberSlots.get(i).getText().length() != 0)
                 progressCounter++;
         }
         Log.v("Counter", "" + progressCounter);
