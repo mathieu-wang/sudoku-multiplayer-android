@@ -1,18 +1,37 @@
 package com.example.sudokumultiplayer;
 
 import android.app.AlertDialog;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 public class ViewLeaderboardsActivity extends ActionBarActivity {
+    private TextView[] textViews = new TextView[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
+        textViews[0] = (TextView) findViewById(R.id.textView1);
+        textViews[1] = (TextView) findViewById(R.id.textView2);
+        textViews[2] = (TextView) findViewById(R.id.textView3);
+        textViews[3] = (TextView) findViewById(R.id.textView4);
+        textViews[4] = (TextView) findViewById(R.id.textView5);
     }
 
 
@@ -38,6 +57,38 @@ public class ViewLeaderboardsActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void bestTimesButtonPress(View view){
+        String bestTimes = "";
+        try {
+            sudokuBestTimesRequest response = new sudokuBestTimesRequest();
+            bestTimes = response.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        for(int i=0; i<5; i++){
+            //TODO change after
+            textViews[i].setText(i + " best time");
+        }
+    }
+
+    public void mostSudokuCompletedButtonPress(View view){
+        String mostSudokuCompleted = "";
+        try {
+            sudokuMostSudokuCompletedRequest response = new sudokuMostSudokuCompletedRequest();
+            mostSudokuCompleted = response.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        for(int i=0; i<5; i++){
+            //TODO change after
+            textViews[i].setText(i + " most sudoku completed");
+        }
+    }
+
     public void helpButtonPress(View view) {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_menu_help)
@@ -45,5 +96,56 @@ public class ViewLeaderboardsActivity extends ActionBarActivity {
                 .setMessage("Check your lifetime stats and the global leaderboards.")
                 .setNegativeButton("Close", null)
                 .show();
+    }
+
+
+    public class sudokuBestTimesRequest extends AsyncTask<String, Integer, String> {
+        String result = "";
+
+        public String doInBackground(String... strings) {
+            HttpClient httpClient = new DefaultHttpClient();
+            //TODO change after
+            String url = "http://104.131.185.217:3000/sudoku/generate-string/25";
+            HttpGet httpGet = new HttpGet(url);
+
+            try {
+                HttpResponse response = httpClient.execute(httpGet);
+                result = EntityUtils.toString(response.getEntity());
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        protected void onPostExecute(String result) {
+            Log.v("HTTP RESPONSE: ", result);
+        }
+    }
+
+    public class sudokuMostSudokuCompletedRequest extends AsyncTask<String, Integer, String> {
+        String result = "";
+
+        public String doInBackground(String... strings) {
+            HttpClient httpClient = new DefaultHttpClient();
+            //TODO change after
+            String url = "http://104.131.185.217:3000/sudoku/generate-string/25";
+            HttpGet httpGet = new HttpGet(url);
+
+            try {
+                HttpResponse response = httpClient.execute(httpGet);
+                result = EntityUtils.toString(response.getEntity());
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        protected void onPostExecute(String result) {
+            Log.v("HTTP RESPONSE: ", result);
+        }
     }
 }
