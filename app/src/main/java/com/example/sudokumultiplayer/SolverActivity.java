@@ -31,8 +31,7 @@ import java.util.concurrent.ExecutionException;
 
 public class SolverActivity extends ActionBarActivity {
 
-    static ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
-    ArrayList<TableRow> sodokuNumberRows = new ArrayList<TableRow>();
+    static ArrayList<EditText> sudokuNumberSlots = new ArrayList<EditText>();
     String[] solution;
     private class solutionServerRequest extends AsyncTask<String, Integer, String> {
         String result = "";
@@ -77,7 +76,7 @@ public class SolverActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        sodokuNumberSlots = getAllSudokuNumberSlots();
+        sudokuNumberSlots = getAllSudokuNumberSlots();
     }
 
     @Override
@@ -106,14 +105,14 @@ public class SolverActivity extends ActionBarActivity {
 
         String sol = "";
         String board = "";
-        for (int i = 0; i < sodokuNumberSlots.size(); i++) {
-            sodokuNumberSlots.get(i).setId(i);
-            if (sodokuNumberSlots.get(i).getText().length() == 0) {
+        for (int i = 0; i < sudokuNumberSlots.size(); i++) {
+            sudokuNumberSlots.get(i).setId(i);
+            if (sudokuNumberSlots.get(i).getText().length() == 0) {
                 board = board + "0";
             } else {
-                board = board + sodokuNumberSlots.get(i).getText();
+                board = board + sudokuNumberSlots.get(i).getText();
             }
-            if (i != sodokuNumberSlots.size() - 1) {
+            if (i != sudokuNumberSlots.size() - 1) {
                 board = board + ",";
             }
         }
@@ -134,33 +133,33 @@ public class SolverActivity extends ActionBarActivity {
             solution[solution.length-1] = "" + solution[solution.length-1].charAt(0);
         }
         for (int i = 0; i < solution.length; i++) {
-            sodokuNumberSlots.get(i).setText(solution[i]);
+            sudokuNumberSlots.get(i).setText(solution[i]);
         }
     }
 
     public void resetButtonPress(View view) {
-        for (int i = 0; i < sodokuNumberSlots.size(); i++) {
-            sodokuNumberSlots.get(i).setText("");
+        for (int i = 0; i < sudokuNumberSlots.size(); i++) {
+            sudokuNumberSlots.get(i).setText("");
         }
     }
     // get all EditText elements
     private ArrayList<EditText> getAllSudokuNumberSlots() {
         TableLayout myTableLayout = (TableLayout) findViewById(R.id.singlePlayerTableLayout);
-        ArrayList<EditText> sodokuNumberSlots = new ArrayList<EditText>();
-        ArrayList<TableRow> sodokuNumberRows = new ArrayList<TableRow>();
+        ArrayList<EditText> sudokuNumberSlots = new ArrayList<EditText>();
+        ArrayList<TableRow> sudokuNumberRows = new ArrayList<TableRow>();
         for (int i = 0; i < myTableLayout.getChildCount(); i++) {
             if (myTableLayout.getChildAt(i) instanceof TableRow)
-                sodokuNumberRows.add((TableRow) myTableLayout.getChildAt(i));
+                sudokuNumberRows.add((TableRow) myTableLayout.getChildAt(i));
         }
 
-        for (int i = 0; i < sodokuNumberRows.size(); i++) {
-            for (int j = 0; j < sodokuNumberRows.get(i).getChildCount(); j++) {
-                if (sodokuNumberRows.get(i).getChildAt(j) instanceof EditText)
-                    sodokuNumberSlots.add((EditText) sodokuNumberRows.get(i)
+        for (int i = 0; i < sudokuNumberRows.size(); i++) {
+            for (int j = 0; j < sudokuNumberRows.get(i).getChildCount(); j++) {
+                if (sudokuNumberRows.get(i).getChildAt(j) instanceof EditText)
+                    sudokuNumberSlots.add((EditText) sudokuNumberRows.get(i)
                             .getChildAt(j));
             }
         }
-        return sodokuNumberSlots;
+        return sudokuNumberSlots;
     }
 
     public void helpButtonPress(View view) {
