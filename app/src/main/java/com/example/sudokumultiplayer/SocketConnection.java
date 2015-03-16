@@ -5,8 +5,10 @@ package com.example.sudokumultiplayer;
  */
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -126,4 +128,30 @@ public class SocketConnection extends Application{
     public String getCurrentUsername() {
         return currentUsername;
     }
+
+
+    public Emitter.Listener userLost = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+//                    JSONObject data = (JSONObject) args[0];
+                    JSONObject data = (JSONObject) args[0];
+                    String result;
+                    try {
+                        result = data.getString("lost");
+                        AlertDialog.Builder msg = new AlertDialog.Builder(activity);
+                        msg.setTitle("Game Result");
+                        msg.setMessage("You lost!");
+
+                    } catch (JSONException e) {
+                        return;
+                    }
+                    Log.d("socket", data.toString());
+                }
+            });
+        }
+    };
+
 }

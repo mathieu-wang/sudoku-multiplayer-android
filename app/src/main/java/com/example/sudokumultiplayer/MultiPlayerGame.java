@@ -31,6 +31,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
@@ -67,6 +68,9 @@ public class MultiPlayerGame extends ActionBarActivity {
         mSocket.on("start", connection.startGame);
 
         mSocket.on("oprogress", connection.updateProgress);
+//        Button submit = (Button)findViewById(R.id.submitButton);
+//        submit.performClick();
+        mSocket.on("lost", connection.userLost);
 
     }
 
@@ -109,7 +113,9 @@ public class MultiPlayerGame extends ActionBarActivity {
 
         public String doInBackground(String... strings) {
             HttpClient httpClient = new DefaultHttpClient();
-            String url = "http://104.131.185.217:3000/sudoku/generate-string/25";
+//            String url = "http://104.131.185.217:3000/sudoku/generate-string/25";
+            String url = "http://104.131.185.217:3000/sudoku/generate-string/1";
+
             HttpGet httpGet = new HttpGet(url);
 
             try {
@@ -250,6 +256,8 @@ public class MultiPlayerGame extends ActionBarActivity {
 
     public void submitButtonPress(View view) {
         boolean isCorrect = false;
+//        boolean isCorrect = true;
+
         String userResults = new String("");
         String solutionString = new String("");
         for (int i = 0; i < sodokuNumberSlots.size(); i++) {
@@ -273,13 +281,13 @@ public class MultiPlayerGame extends ActionBarActivity {
             msg.setMessage("You win!");
             String username = connection.getCurrentUsername();
 
-            JSONObject result = new JSONObject();
-            try {
-                result.put("username", username);
-                result.put("gameResult", "win");
-            }
-            catch (JSONException e) { }
-            connection.sendDataObject("result", result);
+//            JSONObject result = new JSONObject();
+//            try {
+//                result.put("username", username);
+//                result.put("gameResult", "win");
+//            }
+//            catch (JSONException e) { }
+            connection.sendData("win", username);
         }
         else {
             msg.setMessage("You lose!");
@@ -400,6 +408,7 @@ public class MultiPlayerGame extends ActionBarActivity {
         return progressCounter;
     }
 
+
     private static class CounterLoop implements Runnable {
         public void run() {
             while (mProgressStatus < 81 && threadStopper == 0) {
@@ -411,7 +420,7 @@ public class MultiPlayerGame extends ActionBarActivity {
 //                        mProgress.setProgress(mProgressStatus);
 //
 //                    }
-//                });
+//                }
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
