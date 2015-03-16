@@ -20,13 +20,16 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="63dp"
             android:text=" SUDOKU"
             android:id="@+id/welcome_message"
             android:layout_gravity="center_horizontal"
             android:textAlignment="gravity"
             android:textColor="#ff31ff2f"
-            android:textSize="80dp" />
+            android:textSize="60dp"
+            android:textIsSelectable="true"
+            android:gravity="center"
+            android:layout_weight="0.36" />
 
         <Button
             android:layout_width="match_parent"
@@ -34,7 +37,7 @@
             android:text="Create an account"
             android:onClick="registerButtonPress"
             android:id="@+id/register_button"
-            android:layout_weight="0.19" />
+            android:layout_weight="0.12" />
 
         <Button
             android:layout_width="match_parent"
@@ -43,7 +46,7 @@
             android:onClick="loginButtonPress"
             android:id="@+id/login_button"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.19" />
+            android:layout_weight="0.12" />
 
         <Button
             android:layout_width="match_parent"
@@ -52,7 +55,7 @@
             android:onClick="facebookButtonPress"
             android:id="@+id/facebook_button"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.19" />
+            android:layout_weight="0.12" />
 
         <Button
             android:layout_width="match_parent"
@@ -60,7 +63,16 @@
             android:text="Play as guest"
             android:onClick="guestButtonPress"
             android:id="@+id/guest_start_button"
-            android:layout_weight="0.19" />
+            android:layout_weight="0.12" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Solver"
+            android:id="@+id/button2"
+            android:layout_weight="0.12"
+            android:layout_gravity="center_horizontal"
+            android:onClick="solverButtonPress" />
 
         <Button
             style="?android:attr/buttonStyleSmall"

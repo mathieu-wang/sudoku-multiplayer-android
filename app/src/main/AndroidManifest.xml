@@ -84,6 +84,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.sudokumultiplayer.GuestMainActivity" />
         </activity>
+        <activity
+            android:name=".SolverActivity"
+            android:label="@string/title_activity_view_stats"
+            android:parentActivityName=".GuestMainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.sudokumultiplayer.GuestMainActivity" />
+        </activity>
     </application>
 
 </manifest>
