@@ -54,6 +54,15 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="View Leaderboards"
+            android:onClick="viewLeaderboardsButtonPress"
+            android:id="@+id/leaderboards_button"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.09" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Sign Out"
             android:onClick="signOutButtonPress"
             android:id="@+id/sign_out_button"
@@ -68,6 +77,8 @@
             android:onClick="helpButtonPress"
             android:id="@+id/help_button"
             android:layout_gravity="right" />
+
+
     </LinearLayout>
 
 

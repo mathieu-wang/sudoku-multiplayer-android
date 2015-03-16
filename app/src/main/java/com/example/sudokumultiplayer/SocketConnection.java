@@ -115,6 +115,10 @@ public class SocketConnection extends Application{
         mSocket.emit(packetName, value);
     }
 
+    public void sendDataObject(String packetName, JSONObject value) {
+        mSocket.emit(packetName, value);
+    }
+
     public void setCurrentUsername(String username) {
         this.currentUsername = username;
     }

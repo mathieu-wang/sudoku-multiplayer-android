@@ -16,6 +16,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -266,10 +268,23 @@ public class MultiPlayerGame extends ActionBarActivity {
 
         AlertDialog.Builder msg = new AlertDialog.Builder(this);
         msg.setTitle("Game Result");
-        if (isCorrect)
+
+        if (isCorrect) {
             msg.setMessage("You win!");
-        else
+            String username = connection.getCurrentUsername();
+
+            JSONObject result = new JSONObject();
+            try {
+                result.put("username", username);
+                result.put("gameResult", "win");
+            }
+            catch (JSONException e) { }
+            connection.sendDataObject("result", result);
+        }
+        else {
             msg.setMessage("You lose!");
+            connection.sendData("result", "lose");
+        }
         msg.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
