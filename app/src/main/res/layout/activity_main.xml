@@ -51,15 +51,6 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign in with Facebook"
-            android:onClick="facebookButtonPress"
-            android:id="@+id/facebook_button"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.12" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="Play as guest"
             android:onClick="guestButtonPress"
             android:id="@+id/guest_start_button"
