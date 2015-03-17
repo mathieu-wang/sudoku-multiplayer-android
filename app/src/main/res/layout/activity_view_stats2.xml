@@ -39,4 +39,14 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Statistics"
+        android:onClick="ResetButtonPress"
+        android:id="@+id/resetStats"
+        android:layout_alignBottom="@+id/help_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
