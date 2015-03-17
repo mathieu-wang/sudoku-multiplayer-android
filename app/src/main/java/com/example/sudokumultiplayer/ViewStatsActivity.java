@@ -37,7 +37,17 @@ public class ViewStatsActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    
+
+    public void ResetButtonPress(View view) {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_menu_help)
+                .setTitle("Reset Statistics")
+                .setMessage("Are you sure you want to reset your game statistics?")
+                .setPositiveButton("Yes", null)
+                .setNegativeButton("No", null)
+                .show();
+    }
+
     public void helpButtonPress(View view) {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_menu_help)
