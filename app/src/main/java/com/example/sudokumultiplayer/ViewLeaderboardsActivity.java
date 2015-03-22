@@ -72,7 +72,7 @@ public class ViewLeaderboardsActivity extends ActionBarActivity {
         }
         for(int i=0; i<5; i++){
             //TODO change after
-            if(!loginUser.isEmpty() && loginUser.equalsIgnoreCase(Constants.users[i])){
+            if(loginUser!=null && !loginUser.isEmpty() && loginUser.equalsIgnoreCase(Constants.users[i])){
                 textViews[i].setTextColor(Color.BLUE);
                 textViews[i].setText((i + 1) + " " + Constants.users[i] + " " + Constants.times[i]);
             } else {
@@ -95,7 +95,7 @@ public class ViewLeaderboardsActivity extends ActionBarActivity {
 
         for(int i=0; i<5; i++){
             //TODO change after
-            if(!loginUser.isEmpty() && loginUser.equalsIgnoreCase(Constants.users[i])){
+            if(loginUser!=null && !loginUser.isEmpty() && loginUser.equalsIgnoreCase(Constants.users[i])){
                 textViews[i].setTextColor(Color.BLUE);
                 textViews[i].setText((i + 1) + " " + Constants.users[i] + " " + Constants.sudokuCompleted[i]);
             } else {
