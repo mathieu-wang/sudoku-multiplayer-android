@@ -181,9 +181,10 @@ public class SinglePlayerGame extends ActionBarActivity {
         if (numbers.length == sudokuNumberSlots.size()) {
             for (int i = 0; i < numbers.length; i++) {
                 // skip 0, left empty
-                if (!numbers[i].equals("0"))
+                if (!numbers[i].equals("0")) {
                     sudokuNumberSlots.get(i).setText(numbers[i]);
-                else
+                    sudokuNumberSlots.get(i).setFocusable(false);
+                } else
                     sudokuNumberSlots.get(i).setText("");
             }
         }
