@@ -1,6 +1,7 @@
 package com.example.sudokumultiplayer;
 
 import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import java.util.concurrent.ExecutionException;
 
 public class ViewLeaderboardsActivity extends ActionBarActivity {
     private TextView[] textViews = new TextView[5];
+    private SocketConnection connection = SocketConnection.getInstance();
+    private String loginUser = connection.getCurrentUsername();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,13 @@ public class ViewLeaderboardsActivity extends ActionBarActivity {
         }
         for(int i=0; i<5; i++){
             //TODO change after
-            textViews[i].setText(i + " best time");
+            if(!loginUser.isEmpty() && loginUser.equalsIgnoreCase(Constants.users[i])){
+                textViews[i].setTextColor(Color.BLUE);
+                textViews[i].setText((i + 1) + " " + Constants.users[i] + " " + Constants.times[i]);
+            } else {
+                textViews[i].setTextColor(Color.BLACK);
+                textViews[i].setText((i + 1) + " " + Constants.users[i] + " " + Constants.times[i]);
+            }
         }
     }
 
@@ -83,9 +92,16 @@ public class ViewLeaderboardsActivity extends ActionBarActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
         for(int i=0; i<5; i++){
             //TODO change after
-            textViews[i].setText(i + " most sudoku completed");
+            if(!loginUser.isEmpty() && loginUser.equalsIgnoreCase(Constants.users[i])){
+                textViews[i].setTextColor(Color.BLUE);
+                textViews[i].setText((i + 1) + " " + Constants.users[i] + " " + Constants.sudokuCompleted[i]);
+            } else {
+                textViews[i].setTextColor(Color.BLACK);
+                textViews[i].setText((i + 1) + " " + Constants.users[i] + " " + Constants.sudokuCompleted[i]);
+            }
         }
     }
 
