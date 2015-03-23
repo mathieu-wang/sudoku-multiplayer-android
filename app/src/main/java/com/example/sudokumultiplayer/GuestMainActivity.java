@@ -8,14 +8,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 
 public class GuestMainActivity extends ActionBarActivity {
+
+    private static SocketConnection connection = SocketConnection.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_main);
+        Button signOut = (Button) findViewById(R.id.sign_out_button);
+        if(connection.getCurrentUsername() == null || connection.getCurrentUsername().isEmpty()) {
+            signOut.setEnabled(false);
+        }
     }
 
 
@@ -73,6 +81,7 @@ public class GuestMainActivity extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         //logout logic should go here
                         startActivity(main_page_intent);
+                        connection.setCurrentUsername(null);
                     }
                 })
                 .setNegativeButton("No", null)

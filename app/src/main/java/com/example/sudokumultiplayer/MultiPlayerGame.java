@@ -282,6 +282,8 @@ public class MultiPlayerGame extends ActionBarActivity {
             msg.setMessage("You win!");
             String username = connection.getCurrentUsername();
 
+            // update winning
+            Constants.win();
 //            JSONObject result = new JSONObject();
 //            try {
 //                result.put("username", username);
