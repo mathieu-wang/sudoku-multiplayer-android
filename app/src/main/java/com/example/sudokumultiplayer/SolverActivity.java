@@ -126,14 +126,23 @@ public class SolverActivity extends ActionBarActivity {
         }
         solution = sol.split(",");
         //remove content of the first element
-        if (solution[0].startsWith("{\"sudoku\":"))
-            solution[0] = String.valueOf(solution[0].charAt(solution[0].length()-1));
-        //remove content of the last element
-        if(Character.isDigit(solution[solution.length-1].charAt(0))){
-            solution[solution.length-1] = "" + solution[solution.length-1].charAt(0);
-        }
-        for (int i = 0; i < solution.length; i++) {
-            sudokuNumberSlots.get(i).setText(solution[i]);
+        if (solution[0].startsWith("{\"sudoku\":")) {
+            solution[0] = String.valueOf(solution[0].charAt(solution[0].length() - 1));
+
+            //remove content of the last element
+            if(Character.isDigit(solution[solution.length-1].charAt(0))){
+                solution[solution.length-1] = "" + solution[solution.length-1].charAt(0);
+            }
+            for (int i = 0; i < solution.length; i++) {
+                sudokuNumberSlots.get(i).setText(solution[i]);
+            }
+        } else {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Invalid Grid")
+                    .setMessage(
+                            "Invalid Grid")
+                    .setNegativeButton("Close", null).show();
         }
     }
 
